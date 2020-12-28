@@ -7,6 +7,7 @@
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <link rel="stylesheet" href="<?=base_url()?>assets/bower_components/bootstrap/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="<?=base_url()?>assets/bower_components/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="<?=base_url()?>assets/bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css">
     <link rel="stylesheet" href="<?=base_url()?>assets/dist/css/AdminLTE.min.css">
     <link rel="stylesheet" href="<?=base_url()?>assets/dist/css/skins/_all-skins.css">
     <!--[if lt IE 9]>
@@ -15,7 +16,7 @@
     <![endif]-->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
 </head>
-<body class="hold-transition skin-yellow-light sidebar-mini">
+<body class="hold-transition skin-yellow sidebar-mini">
  
     <div class="wrapper">
         <header class="main-header">
@@ -112,59 +113,74 @@
                 <!-- sidebar menu -->
                 <ul class="sidebar-menu" data-widget="tree">
                     <li class="header">MENU UTAMA</li>
-                    <li>
+                    <li <?=$this->uri->segment(1) == 'dashboard' || $this->uri->segment(1) == '' ? 'class="active"':""?>>
                         <a href="<?=site_url('dashboard')?>"><i class="fa fa-dashboard"></i> <span>Dashboard</span></a>
                     </li>
-                    <?php if($this->session->userdata('level') == 1) { ?>
-                    <li>
-                        <a href=""><i class="fa fa-truck"></i> <span>Toko Bahan</span></a>
-                    </li>
-                    <?php } ?>
-                    <li>
-                        <a href="">
+                    <li <?=$this->uri->segment(1) == 'customer' ? 'class="active"':""?>>
+                        <a href="<?=site_url('customer')?>">
                             <i class="fa fa-users"></i> <span>Pelanggan</span>
                         </a>
                     </li>
-                    <li class="treeview">
+                    <?php if($this->session->userdata('level') != 2) { ?>   
+                    <li class="treeview <?= $this->uri->segment(1) == 'bahan' || 
+                    $this->uri->segment(1) == 'purchase' || $this->uri->segment(1) == 'bahanout' ? "active":""?>">
+                        <a href="#">
+                            <i class="fa fa-truck"></i> <span>Bahan</span>
+                            <span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span>
+                        </a>
+                        <ul class="treeview-menu">
+                            <li <?=$this->uri->segment(1) == 'bahan' ? 'class="active"':""?>><a href="bahan"><i class="fa fa-circle-o"></i> Stock Bahan</a></li>
+                            <li <?=$this->uri->segment(1) == 'purchase' ? 'class="active"':""?>><a href="#"><i class="fa fa-circle-o"></i> Belanja Bahan</a></li>
+                            <li <?=$this->uri->segment(1) == 'bahanout' ? 'class="active"':""?>><a href="#"><i class="fa fa-circle-o"></i> Bahan Keluar (Non Produksi)</a></li>
+                        </ul>
+                    </li>
+                    <?php } ?>
+                    <li class="treeview <?=$this->uri->segment(1) == 'produksi' || $this->uri->segment(1) == 'produk' || 
+                    $this->uri->segment(1) == 'produkout' ? "active":""?>">
                         <a href="#">
                             <i class="fa fa-archive"></i> <span>Produk</span>
                             <span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span>
                         </a>
                         <ul class="treeview-menu">
-                            <li><a href="#"><i class="fa fa-circle-o"></i> Jenis Produk</a></li>
-                            <li><a href="#"><i class="fa fa-circle-o"></i> Satuan</a></li>
-                            <li><a href="#"><i class="fa fa-circle-o"></i> Produk</a></li>
+                            <li <?=$this->uri->segment(1) == 'produk' ? 'class="active"':""?>><a href="<?=site_url('produk')?>"><i class="fa fa-circle-o"></i> Stock Produk</a></li>
+                            <li <?=$this->uri->segment(1) == 'produksi' ? 'class="active"':""?>><a href="<?=site_url('produksi')?>"><i class="fa fa-circle-o"></i> Proses Produksi</a></li>
+                            <li <?=$this->uri->segment(1) == 'produkout' ? 'class="active"':""?>><a href="<?=site_url('produkout')?>"><i class="fa fa-circle-o"></i> Produk Keluar (Non Transaksi)</a></li>
                         </ul>
                     </li>
-                    <li class="treeview">
+                    <?php if($this->session->userdata('level') != 3) { ?>       
+                    <li <?=$this->uri->segment(1) == 'transaction' ? 'class="active"':""?>>
                         <a href="#">
                             <i class="fa fa-shopping-cart"></i> <span>Transaksi</span>
-                            <span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span>
                         </a>
-                        <ul class="treeview-menu">
-                            <?php if($this->session->userdata('level') != 3) { ?>       
-                            <li><a href="#"><i class="fa fa-circle-o"></i> Penjualan</a></li>
-                            <?php } ?>
-                            <?php if($this->session->userdata('level') != 2) { ?>                            
-                            <li><a href="#"><i class="fa fa-circle-o"></i> Bikin Kue</a></li>
-                            <?php } ?>
-                            <li><a href="#"><i class="fa fa-circle-o"></i> Stock Masuk</a></li>
-                            <li><a href="#"><i class="fa fa-circle-o"></i> Stock Keluar</a></li>
-                        </ul>
                     </li>
+                    <?php } ?>
                     <?php if($this->fungsi->user_login()->kewenangan == 1 ) { ?>
-                    <li class="treeview">
+                    <li class="treeview <?=$this->uri->segment(1) == 'report' || $this->uri->segment(1) == 'gudang' 
+                    ? "active":""?>">
                         <a href="#">
                             <i class="fa fa-pie-chart"></i> <span>Laporan</span>
                             <span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span>
                         </a>
                         <ul class="treeview-menu">
-                            <li><a href="#"><i class="fa fa-circle-o"></i> Penjualan</a></li>
-                            <li><a href="#"><i class="fa fa-circle-o"></i> Gudang</a></li>
+                            <li <?=$this->uri->segment(1) == 'report' ? 'class="active"':""?>><a href="#"><i class="fa fa-circle-o"></i> Penjualan</a></li>
+                            <li <?=$this->uri->segment(1) == 'gudang' ? 'class="active"':""?>><a href="#"><i class="fa fa-circle-o"></i> Gudang</a></li>
                         </ul>
                     </li>
                     <li class="header">PENGATURAN</li>
-                    <li><a href="<?=site_url('user')?>"><i class="fa fa-user"></i> <span>Pengguna</span></a></li>
+                    <li <?=$this->uri->segment(1) == 'user' ? 'class="active"':""?>><a href="<?=site_url('user')?>"><i class="fa fa-user"></i> <span>Pengguna</span></a></li>
+                    <li class="treeview <?=$this->uri->segment(1) == 'supplier' || $this->uri->segment(1) == 'j_bahan' || 
+                    $this->uri->segment(1) == 'j_produk' ||  $this->uri->segment(1) == 'satuan' ? "active":""?>">
+                        <a href="#">
+                            <i class="fa fa-book"></i> <span>Referensi</span>
+                            <span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span>
+                        </a>
+                        <ul class="treeview-menu">
+                        <li <?=$this->uri->segment(1) == 'supplier' ? 'class="active"':""?>><a href="<?=site_url('supplier')?>"><i class="fa fa-circle-o"></i> Toko Bahan</a></li>
+                            <li <?=$this->uri->segment(1) == 'j_bahan' ? 'class="active"':""?>><a href="<?=site_url('j_bahan')?>"><i class="fa fa-circle-o"></i> Jenis Bahan</a></li>
+                            <li <?=$this->uri->segment(1) == 'j_produk' ? 'class="active"':""?>><a href="<?=site_url('j_produk')?>"><i class="fa fa-circle-o"></i> Jenis Produk</a></li>
+                            <li <?=$this->uri->segment(1) == 'satuan' ? 'class="active"':""?>><a href="<?=site_url('satuan')?>"><i class="fa fa-circle-o"></i> Satuan</a></li>
+                        </ul>
+                    </li>
                     <?php } ?>
                 </ul>
             </section>
@@ -188,6 +204,15 @@
     <script src="<?=base_url()?>assets/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
     <script src="<?=base_url()?>assets/bower_components/jquery-slimscroll/jquery.slimscroll.min.js"></script>
     <script src="<?=base_url()?>assets/dist/js/adminlte.min.js"></script>
+
+    <script src="<?=base_url()?>assets/bower_components/datatables.net/js/jquery.dataTables.min.js"></script>
+    <script src="<?=base_url()?>assets/bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
+
+    <script>
+    $(document).ready(function(){
+        $('#table1').DataTable()
+    })
+    </script>
  
 </body>
 </html>

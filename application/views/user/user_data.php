@@ -12,14 +12,15 @@
     <div class="box">
         <div class="box-header">
             <h3 class="box-title">Data Pengguna</h3>
-        <div class="box-body table-responsive">
-            <table class="table table-bordered table-striped">
-                <thead>
                     <div class="pull-right">
                         <a href="<?=site_url('user/tambahUser')?>" class="btn btn-primary btn-flat">
                             <i class="fa fa-user-plus"></i>Tambah
                         </a>
                     </div>
+                    </div>
+        <div class="box-body table-responsive">
+            <table class="table table-bordered table-striped" id="table1">
+                <thead>
                     <tr>
                         <th>#</th>
                         <th>Username</th>
@@ -33,7 +34,7 @@
                     <?php $no =1;
                     foreach ($row->result() as $key => $data) { ?>
                     <tr>
-                        <td><?=$no++?>.</td>
+                        <td style="width: 5%;"><?=$no++?>.</td>
                         <td><?=$data->username?></td>
                         <td><?=$data->nama?></td>
                         <td><?=$data->nomor_hp?></td>
