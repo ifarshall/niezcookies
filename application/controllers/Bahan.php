@@ -71,15 +71,15 @@ class Bahan extends CI_Controller {
 	{
 		$post = $this->input->post(null, TRUE);
 		if(isset($_POST['tambah'])){
-            if($this->model_bahan->check_barcode($post['barcode'])->num_rows() > 0) {
-                $this->session->set_flashdata('error', "Barcode $post[barcode] sudah dipakai bahan lain");
+            if($this->model_bahan->check_bahan($post['nama'])->num_rows() > 0) {
+                $this->session->set_flashdata('error', "Bahan $post[nama] sudah terdaftar");
                 redirect('bahan/add');
             } else {
                 $this->model_bahan->add($post);
             }
 		} else if(isset($_POST['ubah'])){
-            if($this->model_bahan->check_barcode($post['barcode'], $post['id'])->num_rows() > 0) {
-                $this->session->set_flashdata('error', "Barcode $post[barcode] sudah dipakai bahan lain");
+            if($this->model_bahan->check_bahan($post['nama'], $post['id'])->num_rows() > 0) {
+                $this->session->set_flashdata('error', "Bahan $post[barcode] sudah terdaftar");
                 redirect('bahan/edit/'.$post['id']);
             } else {
                 $this->model_bahan->edit($post);

@@ -125,6 +125,24 @@ class Produk extends CI_Controller {
             $this->session->set_flashdata('success', 'Data Berhasil dihapus');
         }
         redirect('produk');
-	}
+    }
+    
+    function barcode_qrcode($id) {
+        $data['row'] = $this->model_produk->get($id)->row();
+		$this->template->load('template', 'produk/stock_produk/barcode_qrcode', $data);
+        
+    }
+
+    function barcode_print($id) {
+        $data['row'] = $this->model_produk->get($id)->row();
+        $html = $this->load->view('produk/stock_produk/barcode_print', $data, TRUE);
+        $this->fungsi->PdfGenerator($html,'qrcode-'.$data['row']->barcode, 'A4', 'portrait');
+    }
+
+    function qrcode_print($id) {
+        $data['row'] = $this->model_produk->get($id)->row();
+        $html = $this->load->view('produk/stock_produk/qrcode_print', $data, TRUE);
+        $this->fungsi->PdfGenerator($html,'qrcode-'.$data['row']->barcode, 'A4', 'portrait');
+    }
 
 }

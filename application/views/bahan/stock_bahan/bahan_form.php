@@ -23,13 +23,13 @@
                 <div class="col-md-4 col-md-offset-4">
                 <?php //echo validation_errors(); ?>
                     <form action="<?=site_url('bahan/process')?>" method="post">
-                        <div class="form-group">
+                        <!-- <div class="form-group">
                             <label>Barcode *</label>
-                            <input type="hidden" name="id" value="<?=$row->bahan_id?>">
                             <input type="text" name="barcode" value="<?=$row->barcode?>" class="form-control" required>
-                        </div>
+                        </div> -->
                         <div class="form-group">
                             <label>Nama Bahan *</label>
+                            <input type="hidden" name="id" value="<?=$row->bahan_id?>">
                             <input type="text" name="nama" value="<?=$row->nama?>" class="form-control" required>
                         </div>
                         <div class="form-group">

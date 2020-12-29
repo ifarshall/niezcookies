@@ -40,9 +40,9 @@ class Model_bahan extends CI_Model {
         $this->db->update('b_stock', $params);
     }
 
-    public function check_barcode($code, $id = null){
+    public function check_bahan($code, $id = null){
         $this->db->from('b_stock');
-        $this->db->where('barcode', $code);
+        $this->db->where('nama', $code);
         if($id != null) {
             $this->db->where('bahan_id !=', $id);
         }

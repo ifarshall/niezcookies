@@ -23,7 +23,7 @@
                 <thead>
                     <tr>
                         <th>#</th>
-                        <th>Barcode</th>
+                        <!-- <th>Barcode</th> -->
                         <th>Bahan</th>
                         <th>Jenis Bahan</th>
                         <th>Satuan</th>
@@ -38,7 +38,7 @@
                     foreach ($row->result() as $key => $data) { ?>
                     <tr>
                         <td style="width: 5%;"><?=$no++?>.</td>
-                        <td><?=$data->barcode?></td>
+                        <!-- <td><?=$data->barcode?></td> -->
                         <td><?=$data->nama?></td>
                         <td><?=$data->nama_j_bahan?></td>
                         <td><?=$data->nama_satuan?></td>
