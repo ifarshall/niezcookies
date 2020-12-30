@@ -52,3 +52,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 $route['default_controller'] = 'dashboard';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
+
+$route['bahan/in'] = 'purchase/bahan_purchase';
+$route['bahan/in/add'] = 'purchase/bahan_add';
+
+$route['produk/in'] = 'produksi/produk_produksi';
+$route['produk/in/add'] = 'produksi/produk_add';

@@ -34,11 +34,11 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <?php $no =1;
+                    <!-- <?php $no =1;
                     foreach ($row->result() as $key => $data) { ?>
                     <tr>
                         <td style="width: 5%;"><?=$no++?>.</td>
-                        <!-- <td><?=$data->barcode?></td> -->
+                        
                         <td><?=$data->nama?></td>
                         <td><?=$data->nama_j_bahan?></td>
                         <td><?=$data->nama_satuan?></td>
@@ -55,9 +55,36 @@
                         </td>
                     </tr>
                     <?php
-                    } ?>
+                    } ?> -->
                 </tbody>
             </table>
         </div>
     </div>
 </section>
+
+<script>
+    $(document).ready(function(){
+        $('#table1').DataTable({
+            "processing": true,
+            "ServerSide": true,
+            "ajax": {
+                "url": "<?=site_url('bahan/get_ajax')?>",
+                "type": "POST"
+            },
+            "columnDefs": [
+                {
+                    "targets": [4,5,6],
+                    "className": 'text-right',
+                },
+                {
+                    "targets": [7],
+                    "className": 'text-center',
+                },
+                {
+                    "targets": [7],
+                    "orderable": false
+                },
+            ]
+        })
+    })
+    </script>

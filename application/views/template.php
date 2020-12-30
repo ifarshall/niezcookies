@@ -129,8 +129,8 @@
                             <span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span>
                         </a>
                         <ul class="treeview-menu">
-                            <li <?=$this->uri->segment(1) == 'bahan' ? 'class="active"':""?>><a href="bahan"><i class="fa fa-circle-o"></i> Stock Bahan</a></li>
-                            <li <?=$this->uri->segment(1) == 'purchase' ? 'class="active"':""?>><a href="#"><i class="fa fa-circle-o"></i> Belanja Bahan</a></li>
+                            <li <?=$this->uri->segment(1) == 'bahan' ? 'class="active"':""?>><a href="<?=site_url('bahan')?>"><i class="fa fa-circle-o"></i> Stock Bahan</a></li>
+                            <li <?=$this->uri->segment(1) == 'purchase' ? 'class="active"':""?>><a href="<?=site_url('bahan/in')?>"><i class="fa fa-circle-o"></i> Belanja Bahan</a></li>
                             <li <?=$this->uri->segment(1) == 'bahanout' ? 'class="active"':""?>><a href="#"><i class="fa fa-circle-o"></i> Bahan Keluar (Non Produksi)</a></li>
                         </ul>
                     </li>
@@ -175,7 +175,8 @@
                             <span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span>
                         </a>
                         <ul class="treeview-menu">
-                        <li <?=$this->uri->segment(1) == 'supplier' ? 'class="active"':""?>><a href="<?=site_url('supplier')?>"><i class="fa fa-circle-o"></i> Toko Bahan</a></li>
+                            <li <?=$this->uri->segment(1) == 'supplier' ? 'class="active"':""?>><a href="<?=site_url('supplier')?>"><i class="fa fa-circle-o"></i> Toko Bahan</a></li>
+                            <li <?=$this->uri->segment(1) == 'producer' ? 'class="active"':""?>><a href="<?=site_url('producer')?>"><i class="fa fa-circle-o"></i> Pembuat Produk</a></li>
                             <li <?=$this->uri->segment(1) == 'j_bahan' ? 'class="active"':""?>><a href="<?=site_url('j_bahan')?>"><i class="fa fa-circle-o"></i> Jenis Bahan</a></li>
                             <li <?=$this->uri->segment(1) == 'j_produk' ? 'class="active"':""?>><a href="<?=site_url('j_produk')?>"><i class="fa fa-circle-o"></i> Jenis Produk</a></li>
                             <li <?=$this->uri->segment(1) == 'satuan' ? 'class="active"':""?>><a href="<?=site_url('satuan')?>"><i class="fa fa-circle-o"></i> Satuan</a></li>
@@ -185,6 +186,7 @@
                 </ul>
             </section>
         </aside>
+        <script src="<?=base_url()?>assets/bower_components/jquery/dist/jquery.min.js"></script>
  
         <!-- Content Wrapper -->
         <div class="content-wrapper">
@@ -200,7 +202,7 @@
  
     </div>
  
-    <script src="<?=base_url()?>assets/bower_components/jquery/dist/jquery.min.js"></script>
+    
     <script src="<?=base_url()?>assets/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
     <script src="<?=base_url()?>assets/bower_components/jquery-slimscroll/jquery.slimscroll.min.js"></script>
     <script src="<?=base_url()?>assets/dist/js/adminlte.min.js"></script>

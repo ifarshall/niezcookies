@@ -10,6 +10,35 @@ class Bahan extends CI_Controller {
         $this->load->model(['model_bahan', 'model_j_bahan', 'model_satuan']);
     }
 
+    function get_ajax() {
+        $list = $this->model_bahan->get_datatables();
+        $data = array();
+        $no = @$_POST['start'];
+        foreach ($list as $bahan) {
+            $no++;
+            $row = array();
+            $row[] = $no.".";
+            $row[] = $bahan->nama;
+            $row[] = $bahan->j_bahan_nama;
+            $row[] = $bahan->satuan_nama;
+            $row[] = indo_currency($bahan->total_harga);
+            $row[] = indo_currency($bahan->harga);
+            $row[] = $bahan->stock;
+            // add html for action
+            $row[] = '<a href="'.site_url('bahan/edit/'.$bahan->bahan_id).'" class="btn btn-primary btn-xs"><i class="fa fa-pencil"></i> Update</a>
+                    <a href="'.site_url('bahan/del/'.$bahan->bahan_id).'" onclick="return confirm(\'Yakin hapus data?\')"  class="btn btn-danger btn-xs"><i class="fa fa-trash"></i> Delete</a>';
+            $data[] = $row;
+        }
+        $output = array(
+                    "draw" => @$_POST['draw'],
+                    "recordsTotal" => $this->model_bahan->count_all(),
+                    "recordsFiltered" => $this->model_bahan->count_filtered(),
+                    "data" => $data,
+                );
+        // output to json format
+        echo json_encode($output);
+    }
+
 	public function index()
 	{
 		$data['row'] = $this->model_bahan->get();
@@ -62,7 +91,7 @@ class Bahan extends CI_Controller {
             );
             $this->template->load('template', 'bahan/stock_bahan/bahan_form', $data);
 		} else {
-			echo "<script>alert('Data tidak ditemukan');"; //apabila search html yang tidak ada idnya, maka tidak muncul
+			echo "<script>alert('Data tidak dbahanukan');"; //apabila search html yang tidak ada idnya, maka tidak muncul
 			echo "window.location='".site_url('bahan')."';</script>";
 		}
 	}
