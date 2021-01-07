@@ -43,7 +43,10 @@
                             <a href="<?=site_url('supplier/edit/'.$data->supplier_id)?>" class="btn btn-warning btn-xs">
                                 <i class="fa fa-pencil"></i> Ubah
                             </a>
-                            <a href="<?=site_url('supplier/del/'.$data->supplier_id)?>" onclick="return confirm('Apakah anda yakin dihapus?')" class="btn btn-danger btn-xs">
+                            <!-- <a href="<?=site_url('supplier/del/'.$data->supplier_id)?>" onclick="return confirm('Apakah anda yakin dihapus?')" class="btn btn-danger btn-xs">
+                                <i class="fa fa-trash"></i> Hapus
+                            </a> -->
+                            <a href="#modalDelete" data-toggle="modal" onclick="$('#modalDelete #formDelete').attr('action', '<?=site_url('supplier/del/'.$data->supplier_id)?>')" class="btn btn-danger btn-xs">
                                 <i class="fa fa-trash"></i> Hapus
                             </a>
                         </td>
@@ -55,3 +58,22 @@
         </div>
     </div>
 </section>
+
+<div class="modal fade" id="modalDelete">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title">Apakah yakin ingin dihapus?</h4>
+            </div>
+            <div class="modal-footer">
+                <form id="formDelete" action="" method="post">
+                    <button class="btn btn-default" data-dismiss="modal">Tidak</button>
+                    <button class="btn btn-danger" type="submit">Iya</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

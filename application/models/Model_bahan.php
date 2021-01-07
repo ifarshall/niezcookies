@@ -105,4 +105,80 @@ class Model_bahan extends CI_Model {
         $this->db->delete('b_stock');
     }
 
+    function update_purchase_in($data)
+    {
+        $jumlah = $data['jumlah'];
+        $qty = $data['qty'];
+        $id = $data['bahan_id'];
+        $sql = "UPDATE b_stock SET stock = stock + ('$jumlah'*'$qty') WHERE bahan_id = '$id'";
+        $this->db->query($sql);
+    }
+
+    function update_purchase_out($data)
+    {
+        $jumlah = $data['jumlah'];
+        $qty = $data['qty'];
+        $id = $data['bahan_id'];
+        $sql = "UPDATE b_stock SET stock = stock - ('$jumlah'*'$qty') WHERE bahan_id = '$id'";
+        $this->db->query($sql);
+    }
+    
+    function update_harga_out($data)
+    {
+        $harga = $data['harga'];
+        $qty = $data['qty'];
+        $id = $data['bahan_id'];
+        $sql = "UPDATE b_stock SET total_harga = total_harga - ('$harga'*'$qty') WHERE bahan_id = '$id'";
+        $this->db->query($sql);
+    }
+
+    function update_harga_in($data)
+    {
+        $harga = $data['harga'];
+        $qty = $data['qty'];
+        $id = $data['bahan_id'];
+        $sql = "UPDATE b_stock SET total_harga = total_harga + ('$harga'*'$qty') WHERE bahan_id = '$id'";
+        $this->db->query($sql);
+    }
+
+    function update_purchase_indel($data)
+    {
+        $jumlah = $data['jumlah'];
+        $id = $data['bahan_id'];
+        $sql = "UPDATE b_stock SET stock = stock + '$jumlah' WHERE bahan_id = '$id'";
+        $this->db->query($sql);
+    }
+
+    function update_harga_indel($data)
+    {
+        $harga = $data['harga'];
+        $id = $data['bahan_id'];
+        $sql = "UPDATE b_stock SET total_harga = total_harga + '$harga' WHERE bahan_id = '$id'";
+        $this->db->query($sql);
+    }
+
+    function update_purchase_outdel($data)
+    {
+        $jumlah = $data['jumlah'];
+        $id = $data['bahan_id'];
+        $sql = "UPDATE b_stock SET stock = stock - '$jumlah' WHERE bahan_id = '$id'";
+        $this->db->query($sql);
+    }
+
+    function update_harga_outdel($data)
+    {
+        $harga = $data['harga'];
+        $jumlah = $data['jumlah'];
+        $id = $data['bahan_id'];
+        $sql = "UPDATE b_stock SET total_harga = total_harga - ('$harga'*'$jumlah') WHERE bahan_id = '$id'";
+        $this->db->query($sql);
+    }
+
+    function update_harga($data)
+    {
+        $id = $data['bahan_id'];
+        $sql = "UPDATE b_stock SET harga = total_harga / stock WHERE bahan_id = '$id'";
+        $this->db->query($sql);
+    }
+
 }

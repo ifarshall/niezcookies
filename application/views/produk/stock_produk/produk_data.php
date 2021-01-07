@@ -13,7 +13,7 @@
         <div class="box-header">
             <h3 class="box-title">Daftar Produk Barang</h3>
                     <div class="pull-right">
-                        <a href="<?=site_url('produk/add')?>" class="btn btn-primary btn-flat">
+                        <a href="<?=site_url('produk_stock/add')?>" class="btn btn-primary btn-flat">
                             <i class="fa fa-plus"></i> Tambah Produk
                         </a>
                     </div>
@@ -39,20 +39,20 @@
                         <td style="width: 5%;"><?=$no++?>.</td>
                         <td>
                             <?=$data->barcode?><br>
-                            <a href="<?=site_url('produk/barcode_qrcode/'.$data->produk_id)?>" class="btn btn-default btn-xs">
+                            <a href="<?=site_url('produk_stock/barcode_qrcode/'.$data->produk_id)?>" class="btn btn-default btn-xs">
                                 Generate <i class="fa fa-barcode"></i>
                             </a>
                         </td>
                         <td><?=$data->nama?></td>
                         <td><?=$data->nama_j_produk?></td>
                         <td><?=$data->nama_satuan?></td>
-                        <td><?=$data->harga?></td>
+                        <td><?=indo_currency($data->harga)?></td>
                         <td><?=$data->stock?></td>
                         <td class="text-center" width="160px">
-                            <a href="<?=site_url('produk/edit/'.$data->produk_id)?>" class="btn btn-warning btn-xs">
+                            <a href="<?=site_url('produk_stock/edit/'.$data->produk_id)?>" class="btn btn-warning btn-xs">
                                 <i class="fa fa-pencil"></i> Ubah
                             </a>
-                            <a href="<?=site_url('produk/del/'.$data->produk_id)?>" onclick="return confirm('Apakah anda yakin dihapus?')" class="btn btn-danger btn-xs">
+                            <a href="<?=site_url('produk_stock/del/'.$data->produk_id)?>" onclick="return confirm('Apakah anda yakin dihapus?')" class="btn btn-danger btn-xs">
                                 <i class="fa fa-trash"></i> Hapus
                             </a>
                         </td>

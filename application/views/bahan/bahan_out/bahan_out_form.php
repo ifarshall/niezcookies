@@ -1,20 +1,20 @@
 <section class="content-header">
-    <h1>Belanja Bahan
-        <small>Pembelian</small>
+    <h1>Bahan Keluar
+        <small>Rusak/Hilang</small>
     </h1>
     <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"></i></a></li>
-        <li class="active">Belanja Stock Bahan</li>
+        <li class="active">Bahan Keluar</li>
     </ol>
 </section>
 <!-- MAIN CONTENT-->
 <section class="content">
-    
+    <?php $this->view('messages')?>
     <div class="box">
         <div class="box-header">
-            <h3 class="box-title">Tambah Stock Bahan</h3>
+            <h3 class="box-title">Tambah Bahan Keluar</h3>
             <div class="pull-right">
-                <a href="<?=site_url('bahan/in')?>" class="btn btn-danger btn-flat">
+                <a href="<?=site_url('bahan/out')?>" class="btn btn-danger btn-flat">
                     <i class="fa fa-undo"></i>Kembali
                 </a>
             </div>
@@ -52,37 +52,20 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <label>Detail *</label>
-                            <input type="text" name="detail" class="form-control" placeholder="Beli/Bonus/Sisa/etc" required>
+                            <label>Harga Satuan saat ini *</label>
+                            <input type="number" name="harga" id="harga" value="-" class="form-control" readonly>
                         </div>
                         <div class="form-group">
-                            <label>Tempat Beli *</label>
-                            <select name="supplier" class="form-control" required>
-                                <option value="">- Pilih -</option>
-                                <?php foreach($supplier as $s => $data) {
-                                    echo '<option value="'.$data->supplier_id.'">'.$data->nama_toko.'</option>';
-                                } ?>
-
-                            </select>
+                            <label>Keterangan Bahan Keluar *</label>
+                            <input type="text" name="detail" class="form-control" placeholder="Rusak/Hilang/Terpakai/etc" required>
+                            <small>*Keterangan kenapa bahan keluar bukan produksi</small>
                         </div>
                         <div class="form-group">
-                            <div class="row">
-                                <div class="col-md-8">
-                                    <label>Berat *</label>
-                                    <input type="number" name="jumlah" class="form-control" required>
-                                </div>
-                                <div class="col-md-4">
-                                    <label>Jumlah *</label>
-                                    <input type="number" name="qty" class="form-control" required>
-                                </div>
-                            </div>
+                            <label>Jumlah *</label>
+                            <input type="number" name="jumlah" class="form-control" required>
                         </div>
                         <div class="form-group">
-                            <label>Harga *</label>
-                            <input type="number" name="harga" class="form-control" required>
-                        </div>
-                        <div class="form-group">
-                            <button type="submit" name="in_add" class="btn btn-success btn-flat">
+                            <button type="submit" name="out_add" class="btn btn-success btn-flat">
                                 <i class="fa fa-paper-plane"></i> Simpan</button>
                             <button type="reset" class="btn btn-gray btn-flat">
                                 <i class="fa fa-repeat"></i> Reset</button>
@@ -111,6 +94,7 @@
                             <th>Nama Bahan</th>
                             <th>Satuan</th>
                             <th>Stock</th>
+                            <th>Harga Satuan</th>  
                             <th>Actions</th>
                         </tr>
                     </thead>
@@ -120,12 +104,14 @@
                             <td><?=$data->nama?></td>
                             <td><?=$data->nama_satuan?></td>
                             <td class="text-right"><?=$data->stock?></td>
+                            <td><?=$data->harga?></td>
                             <td>
                                 <button class="btn btn-xs btn-info" id="select"
                                     data-id="<?=$data->bahan_id?>"
                                     data-nama="<?=$data->nama?>"
                                     data-satuan="<?=$data->nama_satuan?>"
-                                    data-stock="<?=$data->stock?>">
+                                    data-stock="<?=$data->stock?>"
+                                    data-harga="<?=$data->harga?>">
                                     <i class="fa fa-check"></i> Pilih
                                 </button>
                             </td>
@@ -145,10 +131,12 @@ $(document).ready(function(){
         var nama = $(this).data('nama');
         var nama_satuan = $(this).data('satuan');
         var stock = $(this).data('stock');
+        var harga = $(this).data('harga');
         $('#bahan_id').val(bahan_id);
         $('#nama').val(nama);
         $('#satuan_nama').val(nama_satuan);
         $('#stock_bahan').val(stock);
+        $('#harga').val(harga);
         $('#modal-bahan').modal('hide');
     })
 

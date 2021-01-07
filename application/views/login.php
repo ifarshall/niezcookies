@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Niez Cake and Pastry | Log in</title>
+  <title>Niez Cookies | Log in</title>
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
   <link rel="stylesheet" href="<?=base_url()?>assets/bower_components/bootstrap/dist/css/bootstrap.min.css">
   <link rel="stylesheet" href="<?=base_url()?>assets/bower_components/font-awesome/css/font-awesome.min.css">
@@ -15,7 +15,7 @@
 <body class="hold-transition login-page" style="background: url(https://image.freepik.com/free-vector/cookies-pattern-background_9845-34.jpg); height: 100px">
 <div class="login-box">
   <div class="login-logo">
-    <a style="border-style: double; background-color: #fee277"><b>Niez</b>Cake and Pastry</a>
+    <a style="border-style: double; background-color: #fee277"><b>Niez</b>Cookies</a>
   </div>
   <div class="login-box-body">
     <p class="login-box-msg">Masukan Username dan Passwordmu</p>

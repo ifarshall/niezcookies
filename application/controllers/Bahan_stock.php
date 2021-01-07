@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Bahan extends CI_Controller {
+class Bahan_stock extends CI_Controller {
 
 	function __construct()
     {
@@ -25,8 +25,8 @@ class Bahan extends CI_Controller {
             $row[] = indo_currency($bahan->harga);
             $row[] = $bahan->stock;
             // add html for action
-            $row[] = '<a href="'.site_url('bahan/edit/'.$bahan->bahan_id).'" class="btn btn-primary btn-xs"><i class="fa fa-pencil"></i> Update</a>
-                    <a href="'.site_url('bahan/del/'.$bahan->bahan_id).'" onclick="return confirm(\'Yakin hapus data?\')"  class="btn btn-danger btn-xs"><i class="fa fa-trash"></i> Delete</a>';
+            $row[] = '<a href="'.site_url('bahan_stock/edit/'.$bahan->bahan_id).'" class="btn btn-warning btn-xs"><i class="fa fa-pencil"></i> Ubah</a>
+                    <a href="'.site_url('bahan_stock/del/'.$bahan->bahan_id).'" onclick="return confirm(\'Yakin hapus data?\')"  class="btn btn-danger btn-xs"><i class="fa fa-trash"></i> Hapus</a>';
             $data[] = $row;
         }
         $output = array(
@@ -102,14 +102,14 @@ class Bahan extends CI_Controller {
 		if(isset($_POST['tambah'])){
             if($this->model_bahan->check_bahan($post['nama'])->num_rows() > 0) {
                 $this->session->set_flashdata('error', "Bahan $post[nama] sudah terdaftar");
-                redirect('bahan/add');
+                redirect('bahan_stock/add');
             } else {
                 $this->model_bahan->add($post);
             }
 		} else if(isset($_POST['ubah'])){
             if($this->model_bahan->check_bahan($post['nama'], $post['id'])->num_rows() > 0) {
                 $this->session->set_flashdata('error', "Bahan $post[barcode] sudah terdaftar");
-                redirect('bahan/edit/'.$post['id']);
+                redirect('bahan_stock/edit/'.$post['id']);
             } else {
                 $this->model_bahan->edit($post);
             }
@@ -118,7 +118,7 @@ class Bahan extends CI_Controller {
 		if($this->db->affected_rows()>0) {
             $this->session->set_flashdata('success', 'Data Berhasil disimpan');
         }
-        redirect('bahan');
+        redirect('bahan_stock');
 
 	}
 
@@ -129,7 +129,7 @@ class Bahan extends CI_Controller {
         if($this->db->affected_rows()>0) {
             $this->session->set_flashdata('success', 'Data Berhasil dihapus');
         }
-        redirect('bahan');
+        redirect('bahan_stock');
 	}
 
 }

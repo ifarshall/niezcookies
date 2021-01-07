@@ -13,7 +13,7 @@
         <div class="box-header">
             <h3 class="box-title"><?=ucfirst($page)?> Produk Barang</h3>
             <div class="pull-right">
-                <a href="<?=site_url('produk')?>" class="btn btn-danger btn-flat">
+                <a href="<?=site_url('produk_stock')?>" class="btn btn-danger btn-flat">
                     <i class="fa fa-undo"></i>Kembali
                 </a>
             </div>
@@ -21,7 +21,7 @@
         <div class="box-body">
             <div class="row">
                 <div class="col-md-4 col-md-offset-4">
-                <?php echo form_open_multipart('produk/process') ?>
+                <?php echo form_open_multipart('produk_stock/process') ?>
                         <div class="form-group">
                             <label>Barcode *</label>
                             <input type="hidden" name="id" value="<?=$row->produk_id?>">

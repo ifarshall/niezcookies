@@ -13,17 +13,16 @@
         <div class="box-header">
             <h3 class="box-title">Daftar Bahan Produksi</h3>
                     <div class="pull-right">
-                        <a href="<?=site_url('bahan/add')?>" class="btn btn-primary btn-flat">
+                        <a href="<?=site_url('bahan_stock/add')?>" class="btn btn-primary btn-flat">
                             <i class="fa fa-plus"></i> Tambah Bahan
                         </a>
                     </div>
                     </div>
         <div class="box-body table-responsive">
-            <table class="table table-bordered table-striped" id="table1">
+            <table class="table table-bordered table-striped" id="table1" width="100%">
                 <thead>
                     <tr>
                         <th>#</th>
-                        <!-- <th>Barcode</th> -->
                         <th>Bahan</th>
                         <th>Jenis Bahan</th>
                         <th>Satuan</th>
@@ -46,10 +45,10 @@
                         <td><?=$data->harga?></td>
                         <td><?=$data->stock?></td>
                         <td class="text-center" width="160px">
-                            <a href="<?=site_url('bahan/edit/'.$data->bahan_id)?>" class="btn btn-warning btn-xs">
+                            <a href="<?=site_url('bahan_stock/edit/'.$data->bahan_id)?>" class="btn btn-warning btn-xs">
                                 <i class="fa fa-pencil"></i> Ubah
                             </a>
-                            <a href="<?=site_url('bahan/del/'.$data->bahan_id)?>" onclick="return confirm('Apakah anda yakin dihapus?')" class="btn btn-danger btn-xs">
+                            <a href="<?=site_url('bahan_stock/del/'.$data->bahan_id)?>" onclick="return confirm('Apakah anda yakin dihapus?')" class="btn btn-danger btn-xs">
                                 <i class="fa fa-trash"></i> Hapus
                             </a>
                         </td>
@@ -67,8 +66,9 @@
         $('#table1').DataTable({
             "processing": true,
             "ServerSide": true,
+            "responsive": true,
             "ajax": {
-                "url": "<?=site_url('bahan/get_ajax')?>",
+                "url": "<?=site_url('bahan_stock/get_ajax')?>",
                 "type": "POST"
             },
             "columnDefs": [
@@ -82,9 +82,14 @@
                 },
                 {
                     "targets": [7],
-                    "orderable": false
+                    "orderable": false,
+                    "width": "20%"
+                },
+                {
+                    "targets": [0],
+                    "width": "5%",
                 },
             ]
         })
     })
-    </script>
+</script>

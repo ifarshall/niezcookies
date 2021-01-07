@@ -55,6 +55,18 @@ $route['translate_uri_dashes'] = FALSE;
 
 $route['bahan/in'] = 'purchase/bahan_purchase';
 $route['bahan/in/add'] = 'purchase/bahan_add';
+$route['bahan/in/del/(:num)/(:num)'] = 'purchase/bahan_del';
+$route['bahan/out'] = 'purchase/bahan_out_data';
+$route['bahan/out/add'] = 'purchase/bahan_out_add';
+$route['bahan/out/del/(:num)/(:num)'] = 'purchase/bahan_out_del';
+
 
 $route['produk/in'] = 'produksi/produk_produksi';
 $route['produk/in/add'] = 'produksi/produk_add';
+$route['produk/in/del/(:num)/(:num)'] = 'produksi/produk_del';
+$route['produk/out'] = 'produksi/produk_out_data';
+$route['produk/out/add'] = 'produksi/produk_out_add';
+$route['produk/out/del/(:num)/(:num)'] = 'produksi/produk_out_del';
+
+// $route['transaksi/out'] = 'transaksi_out';
+// $route['transaksi/in'] = 'transaksi_in';

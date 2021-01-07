@@ -1,20 +1,20 @@
 <section class="content-header">
-    <h1>Tambah Stock Produk
-        <small>Produksi</small>
+    <h1>Produk Keluar
+        <small>Hilang/Rusak</small>
     </h1>
     <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"></i></a></li>
-        <li class="active">Tambah Stock produk</li>
+        <li class="active">Produk Keluar</li>
     </ol>
 </section>
 <!-- MAIN CONTENT-->
 <section class="content">
-    
+    <?php $this->view('messages')?>
     <div class="box">
         <div class="box-header">
-            <h3 class="box-title">Tambah Stock produk</h3>
+            <h3 class="box-title">Tambah Produk Keluar</h3>
             <div class="pull-right">
-                <a href="<?=site_url('produk/in')?>" class="btn btn-danger btn-flat">
+                <a href="<?=site_url('produk/out')?>" class="btn btn-danger btn-flat">
                     <i class="fa fa-undo"></i>Kembali
                 </a>
             </div>
@@ -26,7 +26,7 @@
                     <form action="<?=site_url('produksi/process')?>" method="post">
                         <div class="form-group">
                             <label>Tanggal *</label>
-                            <input type="tanggal" name="tanggal" value="<?=date('Y-m-d')?>"class="form-control" required>
+                            <input type="date" name="tanggal" value="<?=date('Y-m-d')?>"class="form-control" required>
                         </div>
                         <div>
                             <label for="barcode">Barcode *</label>
@@ -55,23 +55,13 @@
                                 </div>
                             </div>
                         </div>
-                        <div>
-                            <label for="invoice">Invoice Bahan *</label>
-                        </div>
-                        <div class="form-group input-group">
-                            <input type="hidden" name="transin_id" id="transin_id">
-                            <input type="text" name="invoice" id="invoice" class="form-control" required>
-                            <span class="input-group-btn">
-                                <button type="button" class="btn btn-info btn-flat" data-toggle="modal" data-target="#modal-invoice">
-                                    <i class="fa fa-search"></i>
-                            </span>
+                        <div class="form-group">
+                            <label>Keterangan Produk Keluar *</label>
+                            <textarea id="detail" name="detail" class="form-control" placeholder="Hilang/Bonus/Etc" required></textarea>
+                            <small>*Keterangan kenapa produk keluar bukan penjualan</small>
                         </div>
                         <div class="form-group">
-                            <label>Keterangan Proses Produksi *</label>
-                            <textarea id="detail" row="3" cols="50" name="detail" class="form-control" placeholder="Keju 500gr, Susu 200ml, dst" required></textarea>
-                        </div>
-                        <div class="form-group">
-                            <label>Pembuat Produk</label>
+                            <label>Penanggung Jawab</label>
                             <select name="producer" class="form-control">
                                 <option value="">- Pilih -</option>
                                 <?php foreach($producer as $p => $data) {
@@ -79,12 +69,13 @@
                                 } ?>
                             </select>
                         </div>
-                        <div class="form-group">
+                        <div class="form-group" <?=form_error('jumlah')? 'has-error':null?>>
                             <label>Jumlah *</label>
-                            <input type="number" name="jumlah" class="form-control" required>
+                            <input type="number" name="jumlah" value="<?=set_value('jumlah')?>"class="form-control" required>
+                            <?=form_error('jumlah')?>
                         </div>
                         <div class="form-group">
-                            <button type="submit" name="in_add" class="btn btn-success btn-flat">
+                            <button type="submit" name="out_add" class="btn btn-success btn-flat">
                                 <i class="fa fa-paper-plane"></i> Simpan</button>
                             <button type="reset" class="btn btn-gray btn-flat">
                                 <i class="fa fa-repeat"></i> Reset</button>
@@ -159,74 +150,6 @@ $(document).ready(function(){
         $('#satuan_nama').val(nama_satuan);
         $('#stock_produk').val(stock);
         $('#modal-produk').modal('hide');
-        $('#total_price').val(total_price);
-        
-    })
-
-})
-</script>
-
-<div class="modal fade" id="modal-invoice">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-                <h4 class="modal-title">Pilih Invoice</h4>
-            </div>
-            <div class="modal-body table-responsive">
-                <table class="table table-bordered table-striped" id="table2">
-                    <thead>
-                        <tr>
-                            <th>Invoice</th>
-                            <th>Catatan</th>
-                            <th>Tanggal</th>
-                            <th>Total Harga</th>
-                            <th>Actions</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                    <?php foreach($invoice as $inv => $data) { ?>
-                        <tr>
-                            <td><?=$data->invoice?></td>
-                            <td><?=$data->catatan?></td>
-                            <td><?=$data->tanggal?></td>
-                            <td class="text-right"><?=indo_currency($data->total_price)?></td>
-                            <td>
-                                <button class="btn btn-xs btn-info" id="select2"
-                                    data-transinid="<?=$data->transin_id?>"
-                                    data-invoice="<?=$data->invoice?>"
-                                    data-catatan="<?=$data->catatan?>"
-                                    data-tanggal="<?=$data->tanggal?>"
-                                    data-total_price="<?=$data->total_price?>">
-                                    <i class="fa fa-check"></i> Pilih
-                                </button>
-                            </td>
-                        </tr>
-                        <?php } ?>
-                    </tbody>
-                </table>
-            </div>
-        </div>
-    </div>
-</div>
-
-<script>
-$(document).ready(function(){
-    $(document).on('click', '#select2', function() {
-        var transin_id = $(this).data('transinid');
-        var invoice = $(this).data('invoice');
-        var catatan = $(this).data('catatan');
-        var tanggal = $(this).data('tanggal');
-        var total_price = $(this).data('total_price');
-        $('#transin_id').val(transin_id);
-        $('#invoice').val(invoice);
-        $('#catatan').val(catatan);
-        $('#tanggal').val(tanggal);
-        $('#total_price').val(total_price);
-        $('#modal-invoice').modal('hide');
-        
     })
 
 })

@@ -61,4 +61,20 @@ class Model_produk extends CI_Model {
         $this->db->delete('p_stock');
     }
 
+    function update_produksi_in($data)
+    {
+        $jumlah = $data['jumlah'];
+        $id = $data['produk_id'];
+        $sql = "UPDATE p_stock SET stock = stock + '$jumlah' WHERE produk_id = '$id'";
+        $this->db->query($sql);
+    }
+
+    function update_produksi_out($data)
+    {
+        $jumlah = $data['jumlah'];
+        $id = $data['produk_id'];
+        $sql = "UPDATE p_stock SET stock = stock - '$jumlah' WHERE produk_id = '$id'";
+        $this->db->query($sql);
+    }
+
 }

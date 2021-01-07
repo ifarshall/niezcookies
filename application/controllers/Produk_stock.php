@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Produk extends CI_Controller {
+class Produk_stock extends CI_Controller {
 
 	function __construct()
     {
@@ -74,7 +74,7 @@ class Produk extends CI_Controller {
 		if(isset($_POST['tambah'])){
 			if($this->model_produk->check_barcode($post['barcode'])->num_rows() > 0) {
                 $this->session->set_flashdata('error', "Barcode $post[barcode] sudah dipakai produk lain");
-                redirect('produk/add');
+                redirect('produk_stock/add');
             } else {
                     $this->model_produk->add($post);
                     }
@@ -113,7 +113,7 @@ class Produk extends CI_Controller {
                                 if($this->db->affected_rows()>0) {
                                     $this->session->set_flashdata('success', 'Data Berhasil disimpan');
                                 }
-                                redirect('produk');
+                                redirect('produk_stock');
 
 	}
 
@@ -124,7 +124,7 @@ class Produk extends CI_Controller {
         if($this->db->affected_rows()>0) {
             $this->session->set_flashdata('success', 'Data Berhasil dihapus');
         }
-        redirect('produk');
+        redirect('produk_stock');
     }
     
     function barcode_qrcode($id) {
