@@ -24,8 +24,8 @@
                     <tr>
                         <th>#</th>
                         <th>Barcode</th>
-                        <th>Produk</th>
-                        <th>Jenis Produk</th>
+                        <th>Kategori Produk</th>
+                        <th>Nama Produk</th>
                         <th>Satuan</th>
                         <th>Harga</th>
                         <th>Stock</th>
@@ -37,14 +37,14 @@
                     foreach ($row->result() as $key => $data) { ?>
                     <tr>
                         <td style="width: 5%;"><?=$no++?>.</td>
-                        <td>
+                        <td style="width: 10%;">
                             <?=$data->barcode?><br>
                             <a href="<?=site_url('produk_stock/barcode_qrcode/'.$data->produk_id)?>" class="btn btn-default btn-xs">
                                 Generate <i class="fa fa-barcode"></i>
                             </a>
                         </td>
+                        <td style="width: 10%"><?=$data->nama_j_produk?></td>
                         <td><?=$data->nama?></td>
-                        <td><?=$data->nama_j_produk?></td>
                         <td><?=$data->nama_satuan?></td>
                         <td><?=indo_currency($data->harga)?></td>
                         <td><?=$data->stock?></td>

@@ -1,9 +1,9 @@
 <section class="content-header">
-    <h1>Jenis Bahan
+    <h1>Kategori Bahan
     </h1>
     <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"></i></a></li>
-        <li class="active">Jenis Bahan</li>
+        <li class="active">Kategori Bahan</li>
     </ol>
 </section>
 <!-- MAIN CONTENT-->
@@ -11,7 +11,7 @@
     <?php $this->view('messages')?>
     <div class="box">
         <div class="box-header">
-            <h3 class="box-title">Daftar Jenis Bahan</h3>
+            <h3 class="box-title">Daftar Kategori Bahan</h3>
                     <div class="pull-right">
                         <a href="<?=site_url('j_bahan/add')?>" class="btn btn-primary btn-flat">
                             <i class="fa fa-plus"></i> Tambah
@@ -23,7 +23,7 @@
                 <thead>
                     <tr>
                         <th>#</th>
-                        <th>Jenis Bahan</th>
+                        <th>Kategori Bahan</th>
                         <th>Actions</th>
                     </tr>
                 </thead>

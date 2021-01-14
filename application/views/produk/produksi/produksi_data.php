@@ -26,7 +26,7 @@
                         <th>#</th>
                         <th>Barcode</th>
                         <th>Nama Produk</th>
-                        <!-- <th>Kode Produksi</th> -->
+                        <th>Kode Produksi</th>
                         <th class="text-right">Jumlah</th>
                         <th class="text-center">Tanggal</th>
                         <th class="text-center">Actions</th>
@@ -39,7 +39,7 @@
                         <td style="width: 5%;"><?=$no++?>.</td>
                         <td><?=$data->barcode?></td>
                         <td><?=$data->nama_produk?></td>
-                        <!-- <td><?=$data->invoice_bahan?></td> -->
+                        <td><?=$data->invoice?></td>
                         <td class="text-right"><?=$data->jumlah?></td>
                         <td class="text-center"><?=indo_date($data->tanggal)?></td>
                         <td class="text-center" width="160px">
@@ -47,10 +47,10 @@
                                 data-barcode="<?=$data->barcode?>"
                                 data-namaproduk="<?=$data->nama_produk?>"
                                 data-producer="<?=$data->nama_producer?>"
-                                data-transin_id="<?=$data->transin_id?>"
+                                data-invoice="<?=$data->invoice?>"
                                 data-jumlah="<?=$data->jumlah?>"
                                 data-tanggal="<?=indo_date($data->tanggal)?>"
-                                
+                                data-transinid="<?=$data->transin_id?>"
                                 data-detail="<?=$data->detail?>">
                                 <i class="fa fa-eye"></i> Detail
                             </a>
@@ -69,7 +69,7 @@
 
 <!--MODAL/POPUP-->
 <div class="modal fade" id="modal-detail">
-    <div class="modal-dialog modal-sm">
+    <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -101,12 +101,16 @@
                             <td><span id="tanggal"></span></td>
                         </tr>
                         <tr>
-                            <th>ID Produksi</th>
-                            <td><span id="transin_id"></span></td>
+                            <th>Kode Produksi</th>
+                            <td><span id="invoice"></span></td>
                         </tr>
                         <tr>
                             <th>Detail bahan yang digunakan</th>
                             <td><span id="detail"></span></td>
+                        </tr>
+                        <tr>
+                            <th>Bahan</th>
+                            <td colspan="3"><span id="bahan"></span></td>
                         </tr>
                     </tbody>
                 </table>
@@ -123,15 +127,25 @@ $(document).ready(function(){
         var producer = $(this).data('producer');
         var jumlah = $(this).data('jumlah');
         var tanggal = $(this).data('tanggal');
-        var transin_id = $(this).data('transin_id');
+        var invoice = $(this).data('invoice');
         var detail = $(this).data('detail');
         $('#barcode').text(barcode);
         $('#nama_produk').text(namaproduk);
         $('#producer').text(producer);
         $('#jumlah').text(jumlah);
         $('#tanggal').text(tanggal);
-        $('#transin_id').text(transin_id);
+        $('#invoice').text(invoice);
         $('#detail').text(detail);
+
+        var bahan = '<table class="table no-margin">'
+        bahan += '<tr><th>Bahan</th><th>Harga</th><th>Jumlah</th><th>Total</th></tr>'
+        $.getJSON('<?=site_url('reportprod/sale_bahan/')?>'+$(this).data('transinid'), function(data) {
+        $.each(data, function (key,val) {
+            bahan += '<tr><td>'+val.nama+'</td><td>'+val.harga+'</td><td>'+val.jumlah+'</td><td>'+val.total+'</td></tr>'
+        })
+        bahan += '</table>'
+        $('#bahan').html(bahan)
+    })
     })
 
 })

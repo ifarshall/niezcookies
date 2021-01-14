@@ -18,8 +18,8 @@ class Bahan_stock extends CI_Controller {
             $no++;
             $row = array();
             $row[] = $no.".";
-            $row[] = $bahan->nama;
             $row[] = $bahan->j_bahan_nama;
+            $row[] = $bahan->nama;
             $row[] = $bahan->satuan_nama;
             $row[] = indo_currency($bahan->total_harga);
             $row[] = indo_currency($bahan->harga);

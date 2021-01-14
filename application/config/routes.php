@@ -68,5 +68,5 @@ $route['produk/out'] = 'produksi/produk_out_data';
 $route['produk/out/add'] = 'produksi/produk_out_add';
 $route['produk/out/del/(:num)/(:num)'] = 'produksi/produk_out_del';
 
-// $route['transaksi/out'] = 'transaksi_out';
-// $route['transaksi/in'] = 'transaksi_in';
+$route['report/sale'] = 'report/sale';
+$route['report/prod'] = 'reportprod/sale';

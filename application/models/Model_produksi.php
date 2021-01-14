@@ -30,12 +30,12 @@ class Model_produksi extends CI_Model {
     public function get_produk_in()
     {
         $this->db->select('p_production.produksi_id, p_stock.barcode, p_stock.nama as nama_produk,
-        jumlah, tanggal, detail, transin_id,
-        producer.nama as nama_producer, p_stock.produk_id');
+        jumlah, p_production.tanggal as tanggal, trans_in.tanggal as tanggal_trans, detail, trans_in.transin_id,
+        producer.nama as nama_producer, trans_in.invoice, p_stock.produk_id');
         $this->db->from('p_production');
         // if('trans_id' != null) {
             // }
-        // $this->db->join('trans_in', 'p_production.transin_id = trans_in.transin_id'); //kenapa ini error terus yak
+        $this->db->join('trans_in', 'p_production.transin_id = trans_in.transin_id'); //kenapa ini error terus yak
         $this->db->join('p_stock', 'p_production.produk_id = p_stock.produk_id');
         $this->db->join('producer', 'p_production.producer_id = producer.producer_id', 'left');
         $this->db->where('type', 'in');

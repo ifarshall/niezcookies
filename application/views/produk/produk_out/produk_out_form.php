@@ -33,7 +33,7 @@
                         </div>
                         <div class="form-group input-group">
                             <input type="hidden" name="produk_id" id="produk_id">
-                            <input type="text" name="barcode" id="barcode" class="form-control" required autofocus>
+                            <input type="text" name="barcode" id="barcode" class="form-control" required autofocus readonly>
                             <span class="input-group-btn">
                                 <button type="button" class="btn btn-info btn-flat" data-toggle="modal" data-target="#modal-produk">
                                     <i class="fa fa-search"></i>
@@ -60,7 +60,7 @@
                             <textarea id="detail" name="detail" class="form-control" placeholder="Hilang/Bonus/Etc" required></textarea>
                             <small>*Keterangan kenapa produk keluar bukan penjualan</small>
                         </div>
-                        <div class="form-group">
+                        <!-- <div class="form-group">
                             <label>Penanggung Jawab</label>
                             <select name="producer" class="form-control">
                                 <option value="">- Pilih -</option>
@@ -68,7 +68,7 @@
                                     echo '<option value="'.$data->producer_id.'">'.$data->nama.'</option>';
                                 } ?>
                             </select>
-                        </div>
+                        </div> -->
                         <div class="form-group" <?=form_error('jumlah')? 'has-error':null?>>
                             <label>Jumlah *</label>
                             <input type="number" name="jumlah" value="<?=set_value('jumlah')?>"class="form-control" required>

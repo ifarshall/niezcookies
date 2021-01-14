@@ -109,6 +109,7 @@ class Model_transaksi_in extends CI_Model {
         if($id != null){
                 $this->db->where('transin_id', $id);
         }
+        $this->db->order_by('tanggal', 'desc');
         $query = $this->db->get();
         return $query;
     }

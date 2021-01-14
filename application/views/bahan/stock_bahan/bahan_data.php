@@ -23,8 +23,8 @@
                 <thead>
                     <tr>
                         <th>#</th>
-                        <th>Bahan</th>
-                        <th>Jenis Bahan</th>
+                        <th>Kategori Bahan</th>
+                        <th>Nama Bahan</th>
                         <th>Satuan</th>
                         <th>Total Harga</th>
                         <th>Harga Satuan</th>
@@ -88,6 +88,10 @@
                 {
                     "targets": [0],
                     "width": "5%",
+                },
+                {
+                    "targets": [1,2],
+                    "width": "10%",
                 },
             ]
         })

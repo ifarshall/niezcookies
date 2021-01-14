@@ -9,4 +9,5 @@ class Model_dashboard extends CI_Model {
         $query = $this->db->get();
         return $query;
     }
+
 }

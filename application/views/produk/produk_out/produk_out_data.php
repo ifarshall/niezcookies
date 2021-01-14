@@ -44,7 +44,7 @@
                             <a id="set_dtl" class="btn btn-primary btn-xs"data-toggle="modal" data-target="#modal-detail"
                                 data-barcode="<?=$data->barcode?>"
                                 data-namaproduk="<?=$data->nama_produk?>"
-                                data-producer="<?=$data->nama_producer?>"
+
                                 data-jumlah="<?=$data->jumlah?>"
                                 data-tanggal="<?=indo_date($data->tanggal)?>"
                                 data-detail="<?=$data->detail?>">
@@ -84,10 +84,10 @@
                             <th>Nama Produk</th>
                             <td><span id="nama_produk"></span></td>
                         </tr>
-                        <tr>
+                        <!-- <tr>
                             <th>Penanggung Jawab</th>
                             <td><span id="producer"></span></td>
-                        </tr>
+                        </tr> -->
                         <tr>
                             <th>Jumlah</th>
                             <td><span id="jumlah"></span></td>
@@ -112,13 +112,13 @@ $(document).ready(function(){
     $(document).on('click', '#set_dtl', function() {
         var barcode = $(this).data('barcode');
         var namaproduk = $(this).data('namaproduk');
-        var producer = $(this).data('producer');
+        // var producer = $(this).data('producer');
         var jumlah = $(this).data('jumlah');
         var tanggal = $(this).data('tanggal');
         var detail = $(this).data('detail');
         $('#barcode').text(barcode);
         $('#nama_produk').text(namaproduk);
-        $('#producer').text(producer);
+        // $('#producer').text(producer);
         $('#jumlah').text(jumlah);
         $('#tanggal').text(tanggal);
         $('#detail').text(detail);

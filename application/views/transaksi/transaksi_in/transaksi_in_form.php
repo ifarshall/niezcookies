@@ -71,7 +71,7 @@
                                 <input type="hidden" id="harga">
                                 <input type="hidden" id="stock">
                                 <input type="hidden" id="jumlah_cart">
-                                <input type="text" id="nama" class="form-control" autofocus>
+                                <input type="text" id="nama" class="form-control" autofocus readonly>
                                 <span class="input-group-btn">
                                     <button type="button" class="btn btn-info btn-flat" data-toggle="modal" data-target="#modal-bahan">
                                         <i class="fa fa-search"></i>
@@ -82,7 +82,17 @@
                     </tr>
                     <tr>
                         <td style="vertical-align:top">
-                            <label for="jumlah">Jumlah</label>
+                            <label for="nama_satuan">Satuan</label>
+                        </td>
+                        <td>
+                            <div class="form-group">
+                                <input type="text" id="nama_satuan" class="form-control" readonly>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="vertical-align:top">
+                            <label for="jumlah">Pemakaian</label>
                         </td>
                         <td>
                             <div class="form-group">
@@ -257,6 +267,7 @@
                                 <button class="btn btn-xs btn-info" id="select"
                                     data-id="<?=$data->bahan_id?>"
                                     data-nama="<?=$data->nama?>"
+                                    data-nama_satuan="<?=$data->nama_satuan?>"
                                     data-harga="<?=$data->harga?>"
                                     data-stock="<?=$data->stock?>">
                                     <i class="fa fa-check"></i> Pilih
@@ -275,6 +286,7 @@
 $(document).on('click', '#select', function() {
     $('#bahan_id').val($(this).data('id'));
     $('#nama').val($(this).data('nama'));
+    $('#nama_satuan').val($(this).data('nama_satuan'));
     $('#harga').val($(this).data('harga'));
     $('#stock').val($(this).data('stock'));
     $('#modal-bahan').modal('hide');
@@ -295,6 +307,7 @@ function get_cart_jumlah(nama) {
 $(document).on('click', '#add_cart', function(){
     var bahan_id = $('#bahan_id').val()
     var harga = $('#harga').val()
+    // var satuan = $('#satuan').val()
     var stock = $('#stock').val()
     var jumlah = $('#jumlah').val()
     var jumlah_cart = $('#jumlah_cart').val()
@@ -317,6 +330,7 @@ $(document).on('click', '#add_cart', function(){
                     })
                     $('#bahan_id').val('')
                     $('#nama').val('')
+                    $('#nama_satuan').val('')
                     $('#jumlah').val(1)
                     $('#nama').focus()
                 } else {

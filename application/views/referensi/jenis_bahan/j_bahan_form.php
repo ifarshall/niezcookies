@@ -1,9 +1,9 @@
 <section class="content-header">
-    <h1>Jenis Bahan
+    <h1>Kategori Bahan
     </h1>
     <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"></i></a></li>
-        <li class="active">Jenis Bahan</li>
+        <li class="active">Kategori Bahan</li>
     </ol>
 </section>
 <!-- MAIN CONTENT-->
@@ -11,7 +11,7 @@
     
     <div class="box">
         <div class="box-header">
-            <h3 class="box-title"><?=ucfirst($page)?> Jenis Bahan</h3>
+            <h3 class="box-title"><?=ucfirst($page)?> Kategori Bahan</h3>
             <div class="pull-right">
                 <a href="<?=site_url('j_bahan')?>" class="btn btn-danger btn-flat">
                     <i class="fa fa-undo"></i>Kembali
@@ -24,7 +24,7 @@
                 <?php //echo validation_errors(); ?>
                     <form action="<?=site_url('j_bahan/process')?>" method="post">
                         <div class="form-group">
-                            <label>Jenis bahan *</label>
+                            <label>Kategori bahan *</label>
                             <input type="hidden" name="id" value="<?=$row->j_bahan_id?>">
                             <input type="text" name="nama" value="<?=$row->nama?>" class="form-control" required>
                         </div>

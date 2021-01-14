@@ -106,13 +106,14 @@ class Model_transaksi_out extends CI_Model {
     public function get_sale($id = null)
     {
         $this->db->select('*, customer.nama as nama_customer, user.nama as nama_user, 
-                            trans_out.created as sale_created');
+                            trans_out.created as sale_created, customer.alamat as alamat_customer');
         $this->db->from('trans_out');
         $this->db->join('customer', 'trans_out.customer_id = customer.customer_id', 'left');
         $this->db->join('user', 'trans_out.user_id = user.user_id');
         if($id != null){
                 $this->db->where('transout_id', $id);
         }
+        $this->db->order_by('tanggal', 'desc');
         $query = $this->db->get();
         return $query;
     }

@@ -32,7 +32,7 @@
                             <input type="text" name="nama" value="<?=$row->nama?>" class="form-control" required>
                         </div>
                         <div class="form-group">
-                            <label>Jenis Produk *</label>
+                            <label>Kategori Produk *</label>
                             <select name="j_produk" class="form-control" required>
                                 <option value="">- Pilih -</option>
                                 <?php foreach($j_produk->result() as $key=>$data) { ?>

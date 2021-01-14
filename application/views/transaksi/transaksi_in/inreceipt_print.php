@@ -87,9 +87,9 @@
                 <table cellspacing="0" cellpadding="0">
                     <tr>
                         <td style="width:100px">Bahan</td>
-                        <td>Jumlah</td>
-                        <td style="text-align: right; width:60px">Harga</td>
-                        <td style="text-align: right; width:60px">Total</td>
+                        <td style="text-align:right; width:100px">Jumlah</td>
+                        <!-- <td style="text-align: right; width:60px">Harga</td>
+                        <td style="text-align: right; width:60px">Total</td> -->
                     </tr>
                 </table>
             </div>
@@ -100,10 +100,10 @@
                     foreach ($sale_detail as $key => $value) { ?>
                         <tr>
                             <td style="width:100px"><?=$value->nama?></td>
-                            <td><?=$value->jumlah?></td>
-                            <td style="text-align: right; width:60px"><?=indo_currency($value->harga)?></td>
+                            <td style="text-align:right; width:100px"><?=$value->jumlah?></td>
+                            <!-- <td style="text-align: right; width:60px"><?=indo_currency($value->harga)?></td>
                             <td style="text-align: right; width:60px">
-                            <?=indo_currency($value->harga * $value->jumlah)?></td>
+                            <?=indo_currency($value->harga * $value->jumlah)?></td> -->
                         </tr>
                     <?php
                     } ?>
@@ -111,17 +111,17 @@
                 <tr>
                     <td colspan="4" style="border-bottom: 1px dashed; padding-top:5px"></td>
                 </tr>
-                <tr>
+                <!-- <tr>
                     <td colspan="2"></td>
                     <td style="text-align:right; padding-top:5px">Sub Total</td>
                     <td style="text-align:right; padding-top:5px">
                         <?=indo_currency($sale->total_price)?>
                     </td>
-                </tr>
+                </tr> -->
                 </table>
             </div>
             <div class="thanks">
-                    --- SELAMAT MENIKMATI ---
+                    --- SELAMAT MEMASAK ---
                     <br>
                     @niezcookies
             </div>

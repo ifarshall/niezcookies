@@ -161,6 +161,12 @@
                     --- SELAMAT MENIKMATI ---
                     <br>
                     @niezcookies
+                    <br>
+                    Alamat Pengiriman :
+                    <br>
+                    <td style="text-align: center">
+                        <?=$sale->customer_id == null ? "Tidak ada data alamat" : $sale->alamat_customer?>
+                    </td>
             </div>
         </div>
     </body>

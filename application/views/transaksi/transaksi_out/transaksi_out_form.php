@@ -71,7 +71,7 @@
                                 <input type="hidden" id="harga">
                                 <input type="hidden" id="stock">
                                 <input type="hidden" id="jumlah_cart">
-                                <input type="text" id="barcode" class="form-control" autofocus>
+                                <input type="text" id="barcode" class="form-control" autofocus readonly>
                                 <span class="input-group-btn">
                                     <button type="button" class="btn btn-info btn-flat" data-toggle="modal" data-target="#modal-produk">
                                         <i class="fa fa-search"></i>

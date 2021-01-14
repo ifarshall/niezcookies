@@ -45,4 +45,10 @@ Class Fungsi {
         return $this->ci->model_user->get()->num_rows();
     }
 
+    // public function sum_produk(){
+    //     $this->ci->db->select_sum('harga');
+    //     $query = $this->ci->db->get('p_stock');
+    //     return $query;
+    // }
+
 }

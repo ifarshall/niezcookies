@@ -26,14 +26,14 @@
                     <form action="<?=site_url('produksi/process')?>" method="post">
                         <div class="form-group">
                             <label>Tanggal *</label>
-                            <input type="tanggal" name="tanggal" value="<?=date('Y-m-d')?>"class="form-control" required>
+                            <input type="date" name="tanggal" value="<?=date('Y-m-d')?>"class="form-control" required>
                         </div>
                         <div>
                             <label for="barcode">Barcode *</label>
                         </div>
                         <div class="form-group input-group">
                             <input type="hidden" name="produk_id" id="produk_id">
-                            <input type="text" name="barcode" id="barcode" class="form-control" required autofocus>
+                            <input type="text" name="barcode" id="barcode" class="form-control" required autofocus readonly>
                             <span class="input-group-btn">
                                 <button type="button" class="btn btn-info btn-flat" data-toggle="modal" data-target="#modal-produk">
                                     <i class="fa fa-search"></i>
@@ -60,7 +60,7 @@
                         </div>
                         <div class="form-group input-group">
                             <input type="hidden" name="transin_id" id="transin_id">
-                            <input type="text" name="invoice" id="invoice" class="form-control" required>
+                            <input type="text" name="invoice" id="invoice" class="form-control" required readonly>
                             <span class="input-group-btn">
                                 <button type="button" class="btn btn-info btn-flat" data-toggle="modal" data-target="#modal-invoice">
                                     <i class="fa fa-search"></i>
@@ -72,7 +72,7 @@
                         </div>
                         <div class="form-group">
                             <label>Pembuat Produk</label>
-                            <select name="producer" class="form-control">
+                            <select name="producer" class="form-control" required>
                                 <option value="">- Pilih -</option>
                                 <?php foreach($producer as $p => $data) {
                                     echo '<option value="'.$data->producer_id.'">'.$data->nama.'</option>';

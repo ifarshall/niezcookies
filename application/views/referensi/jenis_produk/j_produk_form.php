@@ -1,9 +1,9 @@
 <section class="content-header">
-    <h1>Jenis Produk
+    <h1>Kategori Produk
     </h1>
     <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"></i></a></li>
-        <li class="active">Jenis Produk</li>
+        <li class="active">Kategori Produk</li>
     </ol>
 </section>
 <!-- MAIN CONTENT-->
@@ -11,7 +11,7 @@
     
     <div class="box">
         <div class="box-header">
-            <h3 class="box-title"><?=ucfirst($page)?> Jenis Produk</h3>
+            <h3 class="box-title"><?=ucfirst($page)?> Kategori Produk</h3>
             <div class="pull-right">
                 <a href="<?=site_url('j_produk')?>" class="btn btn-danger btn-flat">
                     <i class="fa fa-undo"></i>Kembali
