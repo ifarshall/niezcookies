@@ -8,7 +8,10 @@
 </section>
 <!-- MAIN CONTENT-->
 <section class="content">
-    <?php $this->view('messages')?>
+    <?php 
+    // $this->view('messages')
+    ?>
+    <div id="flash" data-flash="<?=$this->session->flashdata('success');?>"></div>
     <div class="box">
         <div class="box-header">
             <h3 class="box-title">Daftar Kategori Bahan</h3>
@@ -37,12 +40,12 @@
                             <a href="<?=site_url('j_bahan/edit/'.$data->j_bahan_id)?>" class="btn btn-warning btn-xs">
                                 <i class="fa fa-pencil"></i> Ubah
                             </a>
-                            <!-- <a href="<?=site_url('j_bahan/del/'.$data->j_bahan_id)?>" onclick="return confirm('Apakah anda yakin dihapus?')" class="btn btn-danger btn-xs">
-                                <i class="fa fa-trash"></i> Hapus
-                            </a> -->
-                            <a href="#modalDelete" data-toggle="modal" onclick="$('#modalDelete #formDelete').attr('action', '<?=site_url('j_bahan/del/'.$data->j_bahan_id)?>')" class="btn btn-danger btn-xs">
+                            <a href="<?=site_url('j_bahan/del/'.$data->j_bahan_id)?>" id="btn-hapus" class="btn btn-danger btn-xs">
                                 <i class="fa fa-trash"></i> Hapus
                             </a>
+                            <!-- <a href="#modalDelete" data-toggle="modal" onclick="$('#modalDelete #formDelete').attr('action', '<?=site_url('j_bahan/del/'.$data->j_bahan_id)?>')" class="btn btn-danger btn-xs">
+                                <i class="fa fa-trash"></i> Hapus
+                            </a> -->
                         </td>
                     </tr>
                     <?php

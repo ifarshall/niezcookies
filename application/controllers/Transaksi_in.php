@@ -105,4 +105,17 @@ class Transaksi_in extends CI_Controller {
         );
         $this->load->view('transaksi/transaksi_in/inreceipt_print', $data);
     }
+
+    public function del($id)
+    {
+        $this->model_transaksi_in->del_sale($id);
+        if($this->db->affected_rows() > 0) {
+            $this->session->set_flashdata('success', 'Data Berhasil dihapus');
+            redirect ('report/prod');
+        } else {
+            $this->session->set_flashdata('success', 'Data Gagal dihapus');
+            redirect ('report/prod');
+            
+        }
+    }
 }

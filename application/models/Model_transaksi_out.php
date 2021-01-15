@@ -128,4 +128,10 @@ class Model_transaksi_out extends CI_Model {
         $query = $this->db->get();
         return $query;
     }
+
+    public function del_sale($id)
+    {
+        $this->db->where('transout_id', $id);
+        $this->db->delete('trans_out');
+    }
 }

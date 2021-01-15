@@ -46,6 +46,19 @@ class Model_user extends CI_Model {
         $this->db->update('user', $params);
     }
 
+    public function ubahUser2($post)
+    {
+        $params['username'] = $post['username'];
+        // $params['nama'] = $post['fullname'];
+        if(!empty($post['password'])){
+             $params['password'] = sha1($post['password']);
+        }
+        $params['nomor_hp'] = $post['phonenumber'] !="" ? $post['phonenumber'] : null;
+        // $params['kewenangan'] = $post['level'];
+        $this->db->where('user_id', $post['user_id']);
+        $this->db->update('user', $params);
+    }
+
     public function hapusUser($id)
 	{
         $this->db->where('user_id', $id);

@@ -9,6 +9,7 @@
 </section>
 <!-- MAIN CONTENT-->
 <section class="content">
+    <div id="flash" data-flash="<?=$this->session->flashdata('success');?>"></div>
     <div class="box">
         <div class="box-header">
             <h3 class="box-title">Data Toko</h3>
@@ -45,7 +46,7 @@
                             <a href="<?=site_url('customer/edit/'.$data->customer_id)?>" class="btn btn-warning btn-xs">
                                 <i class="fa fa-pencil"></i> Ubah
                             </a>
-                            <a href="<?=site_url('customer/del/'.$data->customer_id)?>" onclick="return confirm('Apakah anda yakin dihapus?')" class="btn btn-danger btn-xs">
+                            <a href="<?=site_url('customer/del/'.$data->customer_id)?>" id="btn-hapus" class="btn btn-danger btn-xs">
                                 <i class="fa fa-trash"></i> Hapus
                             </a>
                         </td>

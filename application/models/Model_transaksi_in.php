@@ -125,4 +125,10 @@ class Model_transaksi_in extends CI_Model {
         return $query;
     }
 
+    public function del_sale($id)
+    {
+        $this->db->where('transin_id', $id);
+        $this->db->delete('trans_in');
+    }
+
 }

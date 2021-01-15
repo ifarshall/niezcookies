@@ -9,6 +9,7 @@
 </section>
 <!-- MAIN CONTENT-->
 <section class="content">
+    <div id="flash" data-flash="<?=$this->session->flashdata('success');?>"></div>
     <div class="box">
         <div class="box-header">
             <h3 class="box-title">Data Toko</h3>
@@ -43,12 +44,12 @@
                             <a href="<?=site_url('supplier/edit/'.$data->supplier_id)?>" class="btn btn-warning btn-xs">
                                 <i class="fa fa-pencil"></i> Ubah
                             </a>
-                            <!-- <a href="<?=site_url('supplier/del/'.$data->supplier_id)?>" onclick="return confirm('Apakah anda yakin dihapus?')" class="btn btn-danger btn-xs">
-                                <i class="fa fa-trash"></i> Hapus
-                            </a> -->
-                            <a href="#modalDelete" data-toggle="modal" onclick="$('#modalDelete #formDelete').attr('action', '<?=site_url('supplier/del/'.$data->supplier_id)?>')" class="btn btn-danger btn-xs">
+                            <a href="<?=site_url('supplier/del/'.$data->supplier_id)?>" id="btn-hapus" class="btn btn-danger btn-xs">
                                 <i class="fa fa-trash"></i> Hapus
                             </a>
+                            <!-- <a href="#modalDelete" data-toggle="modal" onclick="$('#modalDelete #formDelete').attr('action', '<?=site_url('supplier/del/'.$data->supplier_id)?>')" class="btn btn-danger btn-xs">
+                                <i class="fa fa-trash"></i> Hapus
+                            </a> -->
                         </td>
                     </tr>
                     <?php

@@ -9,7 +9,10 @@
 </section>
 <!-- MAIN CONTENT-->
 <section class="content">
-    <?php $this->view('messages')?>
+    <?php 
+    // $this->view('messages')
+    ?>
+    <div id="flash" data-flash="<?=$this->session->flashdata('success');?>"></div>
     <div class="box">
         <div class="box-header">
             <h3 class="box-title">Tambah Produk Keluar</h3>
@@ -50,7 +53,7 @@
                                 data-detail="<?=$data->detail?>">
                                 <i class="fa fa-eye"></i> Detail
                             </a>
-                            <a href="<?=site_url('produk/out/del/'.$data->produksi_id.'/'.$data->produk_id)?>" onclick="return confirm('Apakah anda yakin dihapus?')" class="btn btn-danger btn-xs">
+                            <a href="<?=site_url('produk/out/del/'.$data->produksi_id.'/'.$data->produk_id)?>" id="btn-hapus" class="btn btn-danger btn-xs">
                                 <i class="fa fa-trash"></i> Hapus
                             </a>
                         </td>

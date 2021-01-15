@@ -9,12 +9,13 @@
 </section>
 <!-- MAIN CONTENT-->
 <section class="content">
+    <div id="flash" data-flash="<?=$this->session->flashdata('success');?>"></div>
     <div class="box">
         <div class="box-header">
             <h3 class="box-title">Data Produksi</h3>
         </div>
         <div class="box-body table-responsive">
-            <table class="table table-bordered table-striped">
+            <table class="table table-bordered table-striped" id="table1">
                 <thead>
                     <tr>
                         <th>#</th>
@@ -48,9 +49,11 @@
                             <a href="<?=site_url('transaksi_in/cetak/'.$data->transin_id)?>" target="_blank" class="btn btn-info btn-xs">
                                 <i class="fa fa-print"></i> Cetak
                             </a>
-                            <!-- <a href="<?=site_url('transaksi_in/del/'.$data->transin_id)?>" onclick="return confirm('Apakah anda yakin dihapus?')" class="btn btn-danger btn-xs">
+                    
+                            <a href="<?=site_url('transaksi_in/del/'.$data->transin_id)?>" id="btn-hapus" class="btn btn-danger btn-xs">
                                 <i class="fa fa-trash"></i> Hapus
-                            </a> -->
+                            </a>
+                            
                         </td>
                     </tr>
                     <?php

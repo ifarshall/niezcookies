@@ -9,6 +9,7 @@
 </section>
 <!-- MAIN CONTENT-->
 <section class="content">
+    <div id="flash" data-flash="<?=$this->session->flashdata('success');?>"></div>
     <!-- Small boxes (Stat box) -->
     <div class="row">
       <!--ROW 1-->

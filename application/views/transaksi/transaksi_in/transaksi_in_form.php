@@ -404,7 +404,7 @@ $(document).on('click', '#proses_bayar', function() {
                 dataType: 'json',
                 success: function(result) {
                     if(result.success) {
-                        alert('Transaksi berhasil');
+                        alert('Silakan mengambil bahan');
                         window.open('<?=site_url('transaksi_in/cetak/')?>' + result.transin_id, '_blank');
                     } else {
                         alert('Transaksi gagal');

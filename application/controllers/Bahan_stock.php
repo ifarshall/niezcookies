@@ -26,7 +26,7 @@ class Bahan_stock extends CI_Controller {
             $row[] = $bahan->stock;
             // add html for action
             $row[] = '<a href="'.site_url('bahan_stock/edit/'.$bahan->bahan_id).'" class="btn btn-warning btn-xs"><i class="fa fa-pencil"></i> Ubah</a>
-                    <a href="'.site_url('bahan_stock/del/'.$bahan->bahan_id).'" onclick="return confirm(\'Yakin hapus data?\')"  class="btn btn-danger btn-xs"><i class="fa fa-trash"></i> Hapus</a>';
+                    <a href="'.site_url('bahan_stock/del/'.$bahan->bahan_id).'" id="btn-hapus" class="btn btn-danger btn-xs"><i class="fa fa-trash"></i> Hapus</a>';
             $data[] = $row;
         }
         $output = array(

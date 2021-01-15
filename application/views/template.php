@@ -14,6 +14,13 @@
     <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
     <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
+    <link rel="stylesheet" href="<?=base_url()?>assets/plugins/sweetalert2/sweetalert2.min.css">
+    <link rel="stylesheet" href="<?=base_url()?>assets/plugins/sweetalert2/animate.min.css">
+    <style>
+    .swal2-popup {
+        font-size: 1.6rem !important;
+    }
+    </style>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
 </head>
 <body class="hold-transition skin-yellow sidebar-mini <?=$this->uri->segment(1) == 'transaksi' ? 'sidebar-collapse' : null?>">
@@ -34,7 +41,8 @@
  
                 <div class="navbar-custom-menu">
                     <ul class="nav navbar-nav">
-                        <li class="dropdown tasks-menu">
+                        <!-- SOON TO BE ON PROGRESS -->
+                        <!-- <li class="dropdown tasks-menu">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                                 <i class="fa fa-flag-o"></i>
                                 <span class="label label-danger">3</span>
@@ -61,7 +69,7 @@
                                     <a href="#">View all tasks</a>
                                 </li>
                             </ul>
-                        </li>
+                        </li> -->
                         <!-- User Account -->
                         <li class="dropdown user user-menu">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
@@ -77,7 +85,7 @@
                                 </li>
                                 <li class="user-footer">
                                     <div class="pull-left">
-                                        <a href="#" class="btn btn-default btn-flat">Profile</a>
+                                        <a href="<?=site_url('profile/ubah/'.$this->fungsi->user_login()->user_id)?>" class="btn btn-default btn-flat">Profile</a>
                                     </div>
                                     <div class="pull-right">
                                         <a href="<?=site_url('auth/logout')?>" class="btn btn-flat bg-red">Sign out</a>
@@ -102,14 +110,14 @@
                         <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
                     </div>
                 </div>
-                <form action="#" method="get" class="sidebar-form">
+                <!-- <form action="#" method="get" class="sidebar-form">
                     <div class="input-group">
                         <input type="text" name="q" class="form-control" placeholder="Search...">
                         <span class="input-group-btn">
                             <button type="submit" name="search" id="search-btn" class="btn btn-flat"><i class="fa fa-search"></i></button>
                         </span>
                     </div>
-                </form>
+                </form> -->
                 <!-- sidebar menu -->
                 <ul class="sidebar-menu" data-widget="tree">
                     <li class="header">MENU UTAMA</li>
@@ -215,9 +223,53 @@
     <script src="<?=base_url()?>assets/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
     <script src="<?=base_url()?>assets/bower_components/jquery-slimscroll/jquery.slimscroll.min.js"></script>
     <script src="<?=base_url()?>assets/dist/js/adminlte.min.js"></script>
+    <script src="<?=base_url()?>assets/plugins/sweetalert2/sweetalert2.min.js"></script>
 
     <script src="<?=base_url()?>assets/bower_components/datatables.net/js/jquery.dataTables.min.js"></script>
     <script src="<?=base_url()?>assets/bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
+
+
+<script>
+var flash = $('#flash').data('flash');
+if(flash) {
+    Swal.fire({
+        icon: 'success',
+        title: 'Berhasil',
+        text: flash,
+        showClass: {
+            popup: 'animate__animated animate__fadeInDown'
+        },
+        hideClass: {
+            popup: 'animate__animated animate__fadeOutUp'
+        }
+    })
+}
+
+$(document).on('click', '#btn-hapus', function(e) {
+    e.preventDefault();
+    var link = $(this).attr('href');
+
+    Swal.fire({
+    title: 'Apakah anda yakin?',
+    text: "Data akan dihapus!",
+    icon: 'warning',
+    showCancelButton: true,
+    confirmButtonColor: '#00a65a',
+    cancelButtonColor: '#d33',
+    confirmButtonText: 'Ya, Hapus!',
+    showClass: {
+        popup: 'animate__animated animate__fadeInDown'
+    },
+    hideClass: {
+        popup: 'animate__animated animate__fadeOutUp'
+    }
+    }).then((result) => {
+        if (result.isConfirmed) {
+            window.location = link;
+        }
+    })
+})
+</script>
 
     <script>
     $(document).ready(function(){

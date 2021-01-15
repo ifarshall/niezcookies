@@ -57,7 +57,7 @@ class Customer extends CI_Controller {
 		}
 		
 		if($this->db->affected_rows()>0) {
-            echo "<script>alert('Data Berhasil Disimpan');</script>";
+            $this->session->set_flashdata('success', 'Data Berhasil disimpan');
         }
         echo "<script>window.location='".site_url('customer')."';</script>";
 
@@ -68,7 +68,7 @@ class Customer extends CI_Controller {
         $this->model_customer->del($id);
 
         if($this->db->affected_rows()>0) {
-            echo "<script>alert('Data Berhasil Dihapus');</script>";
+            $this->session->set_flashdata('success', 'Data Berhasil dihapus');
         }
         echo "<script>window.location='".site_url('customer')."';</script>";
 	}

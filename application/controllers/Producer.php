@@ -57,7 +57,7 @@ class Producer extends CI_Controller {
 		}
 		
 		if($this->db->affected_rows()>0) {
-            echo "<script>alert('Data Berhasil Disimpan');</script>";
+            $this->session->set_flashdata('success', 'Data Berhasil disimpan');
         }
         echo "<script>window.location='".site_url('producer')."';</script>";
 
@@ -71,7 +71,7 @@ class Producer extends CI_Controller {
 			echo "<script>alert('Data Tidak dapat dihapus, sudah digunakan');</script>";
 		}
         else {
-            echo "<script>alert('Data Berhasil Dihapus');</script>";
+            $this->session->set_flashdata('success', 'Data Berhasil dihapus');
         }
         echo "<script>window.location='".site_url('producer')."';</script>";
 	}

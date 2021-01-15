@@ -9,6 +9,7 @@
 </section>
 <!-- MAIN CONTENT-->
 <section class="content">
+    <div id="flash" data-flash="<?=$this->session->flashdata('success');?>"></div>
     <div class="box">
         <div class="box-header">
             <h3 class="box-title">Data Pengguna</h3>
@@ -39,16 +40,24 @@
                         <td><?=$data->nama?></td>
                         <td><?=$data->nomor_hp?></td>
                         <td><?=$data->kewenangan == 1 ? "Administrator" : ($data->kewenangan == 2 ? "Cashier" : "Chef")?></td>
-                        <td class="text-center" width="160px">
+                        <!-- <td class="text-center" width="160px">
                             <form action="<?=site_url('user/hapusUser')?>" method="post">
                                 <a href="<?=site_url('user/ubahUser/'.$data->user_id)?>" class="btn btn-warning btn-xs">
                                     <i class="fa fa-pencil"></i>Ubah
                                 </a>
                                 <input type="hidden" name="user_id" value="<?=$data->user_id?>">
-                                    <button onclick="return confirm('Apakah anda yakin dihapus?')" class="btn btn-danger btn-xs">
+                                    <button id="btn-hapus" class="btn btn-danger btn-xs">
                                 <i class="fa fa-trash"></i>Hapus
                                 </button>
                             </form>
+                        </td> -->
+                        <td class="text-center" width="160px">
+                            <a href="<?=site_url('user/ubahUser/'.$data->user_id)?>" class="btn btn-warning btn-xs">
+                                    <i class="fa fa-pencil"></i> Ubah
+                                </a>
+                                <a href="<?=site_url('user/hapusUser/'.$data->user_id)?>" id="btn-hapus" class="btn btn-danger btn-xs">
+                                    <i class="fa fa-trash"></i> Hapus
+                            </a>
                         </td>
                     </tr>
                     <?php

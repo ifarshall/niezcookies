@@ -116,6 +116,19 @@ class Transaksi_out extends CI_Controller {
         );
         $this->load->view('transaksi/transaksi_out/outreceipt_print', $data);
     }
+
+    public function del($id)
+    {
+        $this->model_transaksi_out->del_sale($id);
+        if($this->db->affected_rows() > 0) {
+            $this->session->set_flashdata('success', 'Data Berhasil dihapus');
+            redirect ('report/sale');
+        } else {
+            $this->session->set_flashdata('success', 'Data Gagal dihapus');
+            redirect ('report/sale');
+            
+        }
+    }
     
 	
 }
