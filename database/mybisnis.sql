@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 07 Jan 2021 pada 11.51
+-- Waktu pembuatan: 16 Jan 2021 pada 09.41
 -- Versi server: 10.4.11-MariaDB
 -- Versi PHP: 7.4.2
 
@@ -42,6 +42,13 @@ CREATE TABLE `b_purchase` (
   `user_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Dumping data untuk tabel `b_purchase`
+--
+
+INSERT INTO `b_purchase` (`purchase_id`, `bahan_id`, `type`, `detail`, `supplier_id`, `jumlah`, `qty`, `harga`, `tanggal`, `created`, `user_id`) VALUES
+(50, 15, 'in', 'Beli', 1, 454, 1, 80000, '2021-01-15', '2021-01-15 20:45:43', 1);
+
 -- --------------------------------------------------------
 
 --
@@ -66,16 +73,18 @@ CREATE TABLE `b_stock` (
 
 INSERT INTO `b_stock` (`bahan_id`, `nama`, `j_bahan_id`, `satuan_id`, `harga`, `total_harga`, `stock`, `created`, `modified`) VALUES
 (13, 'Tepung kunci', 9, 1, 0, 0, 0, '2021-01-07 11:30:26', NULL),
-(15, 'Butter anchor', 3, 1, 0, 0, 0, '2021-01-07 11:31:16', NULL),
+(15, 'Butter anchor', 3, 1, 177, 23328, 132, '2021-01-07 11:31:16', NULL),
 (16, 'Susu bubuk', 2, 1, 0, 0, 0, '2021-01-07 11:31:32', NULL),
 (17, 'Santan kara cair', 13, 10, 0, 0, 0, '2021-01-07 11:32:16', '2021-01-07 05:32:51'),
 (18, 'Tepung sagu', 9, 1, 0, 0, 0, '2021-01-07 11:33:08', NULL),
-(19, 'Telur ayam biasa', 8, 9, 0, 0, 0, '2021-01-07 11:33:38', NULL),
+(19, 'Telur ayam biasa', 8, 9, 0, 0, 0, '2021-01-07 11:33:38', '2021-01-15 10:33:40'),
 (20, 'Telur ayam omega', 8, 9, 0, 0, 0, '2021-01-07 11:33:52', NULL),
 (21, 'Telur ayam kampung', 8, 9, 0, 0, 0, '2021-01-07 11:34:06', NULL),
 (22, 'Susu kental manis', 2, 1, 0, 0, 0, '2021-01-07 11:34:21', NULL),
 (23, 'Minyak goreng', 16, 3, 0, 0, 0, '2021-01-07 11:34:58', NULL),
-(28, 'Keju Prochiz', 1, 1, 0, 0, 0, '2021-01-07 13:32:23', NULL);
+(28, 'Keju Prochiz', 1, 1, 0, 0, 0, '2021-01-07 13:32:23', NULL),
+(29, 'Toples Nastar', 6, 8, 0, 0, 0, '2021-01-14 19:06:48', NULL),
+(30, 'Toples Sagu Keju', 6, 8, 0, 0, 0, '2021-01-14 19:06:58', NULL);
 
 -- --------------------------------------------------------
 
@@ -98,7 +107,7 @@ CREATE TABLE `customer` (
 --
 
 INSERT INTO `customer` (`customer_id`, `nama`, `gender`, `telepon`, `alamat`, `created`, `modified`) VALUES
-(5, 'Kak rani', 'P', '09876543212', 'Gkn manado', '2021-01-07 11:20:16', NULL);
+(5, 'Kak rani', 'P', '09876543212', 'Gkn manado', '2021-01-07 11:20:16', '2021-01-15 14:01:03');
 
 -- --------------------------------------------------------
 
@@ -145,10 +154,7 @@ CREATE TABLE `p_production` (
 --
 
 INSERT INTO `p_production` (`produksi_id`, `produk_id`, `type`, `detail`, `producer_id`, `jumlah`, `tanggal`, `created`, `user_id`, `transin_id`) VALUES
-(36, 11, 'in', '- keju\r\n- dll', 8, 5, '2021-01-06', '2021-01-06 06:48:55', 1, 16),
-(37, 11, 'out', 'hilang', 8, 10, '2021-01-06', '2021-01-06 17:15:00', 1, NULL),
-(38, 11, 'out', 'hilang', 8, 10, '2021-01-06', '2021-01-06 21:46:48', 1, NULL),
-(39, 12, 'in', 'gagal 1 toples', 8, 10, '2021-01-07', '2021-01-07 13:12:57', 1, 25);
+(45, 13, 'in', 'nas', 8, 5, '2021-01-15', '2021-01-15 20:49:45', 1, 29);
 
 -- --------------------------------------------------------
 
@@ -167,6 +173,13 @@ CREATE TABLE `p_stock` (
   `created` datetime NOT NULL DEFAULT current_timestamp(),
   `modified` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data untuk tabel `p_stock`
+--
+
+INSERT INTO `p_stock` (`produk_id`, `barcode`, `nama`, `j_produk_id`, `satuan_id`, `harga`, `stock`, `created`, `modified`) VALUES
+(14, 'AN0001', 'Pizza', 4, 4, 50000, 0, '2021-01-09 11:17:04', NULL);
 
 -- --------------------------------------------------------
 
@@ -292,6 +305,34 @@ CREATE TABLE `trans_in` (
   `created` datetime NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Dumping data untuk tabel `trans_in`
+--
+
+INSERT INTO `trans_in` (`transin_id`, `invoice`, `producer_id`, `total_price`, `catatan`, `tanggal`, `user_id`, `created`) VALUES
+(34, 'PROD1501210001', 8, 176, 'aaa', '2021-01-15', 1, '2021-01-15 21:18:01'),
+(35, 'PROD1501210002', 8, 176, 'asdasdsa', '2021-01-15', 1, '2021-01-15 21:41:13'),
+(36, 'PROD1501210003', 8, 176, '2312312', '2021-01-15', 1, '2021-01-15 21:41:23'),
+(37, 'PROD1501210004', 8, 7744, '4', '2021-01-15', 1, '2021-01-15 21:41:34'),
+(38, 'PROD1501210005', 8, 880, 'h', '2021-01-15', 1, '2021-01-15 21:42:06'),
+(39, 'PROD1501210006', 8, 176, '', '2021-01-15', 1, '2021-01-15 21:42:22'),
+(40, 'PROD1501210007', 8, 176, '', '2021-01-15', 1, '2021-01-15 21:42:36'),
+(41, 'PROD1501210008', 8, 1056, '', '2021-01-15', 1, '2021-01-15 21:42:51'),
+(42, 'PROD1501210009', 8, 13552, 'hhh', '2021-01-15', 1, '2021-01-15 21:43:06'),
+(43, 'PROD1501210010', 8, 1408, '', '2021-01-15', 1, '2021-01-15 21:43:18'),
+(44, 'PROD1501210011', 8, 31152, '', '2021-01-15', 1, '2021-01-15 21:43:38');
+
+--
+-- Trigger `trans_in`
+--
+DELIMITER $$
+CREATE TRIGGER `del_detail` AFTER DELETE ON `trans_in` FOR EACH ROW BEGIN
+	DELETE FROM trans_in_detail
+    WHERE transin_id = OLD.transin_id;
+END
+$$
+DELIMITER ;
+
 -- --------------------------------------------------------
 
 --
@@ -323,6 +364,23 @@ CREATE TABLE `trans_in_detail` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
+-- Dumping data untuk tabel `trans_in_detail`
+--
+
+INSERT INTO `trans_in_detail` (`indetail_id`, `transin_id`, `bahan_id`, `harga`, `jumlah`, `total`) VALUES
+(41, 34, 15, 176, 1, 176),
+(42, 35, 15, 176, 1, 176),
+(43, 36, 15, 176, 1, 176),
+(44, 37, 15, 176, 44, 7744),
+(45, 38, 15, 176, 5, 880),
+(46, 39, 15, 176, 1, 176),
+(47, 40, 15, 176, 1, 176),
+(48, 41, 15, 176, 6, 1056),
+(49, 42, 15, 176, 77, 13552),
+(50, 43, 15, 176, 8, 1408),
+(51, 44, 15, 176, 177, 31152);
+
+--
 -- Trigger `trans_in_detail`
 --
 DELIMITER $$
@@ -333,6 +391,17 @@ CREATE TRIGGER `stock_min` AFTER INSERT ON `trans_in_detail` FOR EACH ROW BEGIN
     WHERE bahan_id = NEW.bahan_id;
     UPDATE b_stock SET harga = total_harga / stock
     WHERE bahan_id = NEW.bahan_id;
+END
+$$
+DELIMITER ;
+DELIMITER $$
+CREATE TRIGGER `stock_return` AFTER DELETE ON `trans_in_detail` FOR EACH ROW BEGIN
+	UPDATE b_stock SET stock = stock + OLD.jumlah
+    WHERE bahan_id = OLD.bahan_id;
+    UPDATE b_stock SET total_harga = total_harga + OLD.total
+    WHERE bahan_id = OLD.bahan_id;
+    UPDATE b_stock SET harga = total_harga / stock
+    WHERE bahan_id = OLD.bahan_id;
 END
 $$
 DELIMITER ;
@@ -357,6 +426,17 @@ CREATE TABLE `trans_out` (
   `user_id` int(11) NOT NULL,
   `created` datetime NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Trigger `trans_out`
+--
+DELIMITER $$
+CREATE TRIGGER `del_detail2` AFTER DELETE ON `trans_out` FOR EACH ROW BEGIN
+	DELETE FROM t_out_detail
+    WHERE transout_id = OLD.transout_id;
+END
+$$
+DELIMITER ;
 
 -- --------------------------------------------------------
 
@@ -391,12 +471,26 @@ CREATE TABLE `t_out_detail` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
+-- Dumping data untuk tabel `t_out_detail`
+--
+
+INSERT INTO `t_out_detail` (`outdetail_id`, `transout_id`, `produk_id`, `harga`, `jumlah`, `diskon_item`, `total`) VALUES
+(51, 16, 13, 70000, 1, 0, 70000);
+
+--
 -- Trigger `t_out_detail`
 --
 DELIMITER $$
 CREATE TRIGGER `stock_min2` AFTER INSERT ON `t_out_detail` FOR EACH ROW BEGIN
 	UPDATE p_stock SET stock = stock - NEW.jumlah
     WHERE produk_id = NEW.produk_id;
+END
+$$
+DELIMITER ;
+DELIMITER $$
+CREATE TRIGGER `stock_return2` AFTER DELETE ON `t_out_detail` FOR EACH ROW BEGIN
+	UPDATE p_stock SET stock = stock + OLD.jumlah
+    WHERE produk_id = OLD.produk_id;
 END
 $$
 DELIMITER ;
@@ -421,9 +515,9 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`user_id`, `username`, `password`, `nama`, `kewenangan`, `nomor_hp`) VALUES
-(1, 'admin', 'd033e22ae348aeb5660fc2140aec35850c4da997', 'Ricaldi Farshall', 1, '08121232904'),
+(1, 'admin', 'd033e22ae348aeb5660fc2140aec35850c4da997', 'Ricaldi Farshall', 0, '08121232904'),
 (2, 'kasir1', '874c0ac75f323057fe3b7fb3f5a8a41df2b94b1d', 'Ical', 2, '08111571692'),
-(3, 'tukangkue1', '117212a1e4e632955446c16084bce1a427dc7536', 'Caldi', 3, '08121232904'),
+(3, 'tukangkue1', '117212a1e4e632955446c16084bce1a427dc7536', 'Caldi', 3, '12312312'),
 (8, 'anisa', '812c40f10bdd1b301c34552f5cf7109e0d814d45', 'Anisa Yulianti', 1, '085240929800');
 
 --
@@ -566,37 +660,37 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT untuk tabel `b_purchase`
 --
 ALTER TABLE `b_purchase`
-  MODIFY `purchase_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=43;
+  MODIFY `purchase_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=51;
 
 --
 -- AUTO_INCREMENT untuk tabel `b_stock`
 --
 ALTER TABLE `b_stock`
-  MODIFY `bahan_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
+  MODIFY `bahan_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
 
 --
 -- AUTO_INCREMENT untuk tabel `customer`
 --
 ALTER TABLE `customer`
-  MODIFY `customer_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `customer_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT untuk tabel `producer`
 --
 ALTER TABLE `producer`
-  MODIFY `producer_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `producer_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT untuk tabel `p_production`
 --
 ALTER TABLE `p_production`
-  MODIFY `produksi_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=40;
+  MODIFY `produksi_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=46;
 
 --
 -- AUTO_INCREMENT untuk tabel `p_stock`
 --
 ALTER TABLE `p_stock`
-  MODIFY `produk_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `produk_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT untuk tabel `r_jenis_bahan`
@@ -626,31 +720,31 @@ ALTER TABLE `supplier`
 -- AUTO_INCREMENT untuk tabel `trans_in`
 --
 ALTER TABLE `trans_in`
-  MODIFY `transin_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
+  MODIFY `transin_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=45;
 
 --
 -- AUTO_INCREMENT untuk tabel `trans_in_detail`
 --
 ALTER TABLE `trans_in_detail`
-  MODIFY `indetail_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
+  MODIFY `indetail_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=52;
 
 --
 -- AUTO_INCREMENT untuk tabel `trans_out`
 --
 ALTER TABLE `trans_out`
-  MODIFY `transout_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `transout_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT untuk tabel `t_out_detail`
 --
 ALTER TABLE `t_out_detail`
-  MODIFY `outdetail_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `outdetail_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=53;
 
 --
 -- AUTO_INCREMENT untuk tabel `user`
 --
 ALTER TABLE `user`
-  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- Ketidakleluasaan untuk tabel pelimpahan (Dumped Tables)

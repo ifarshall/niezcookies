@@ -12,6 +12,7 @@ class Report extends CI_Controller {
 
 	public function sale()
 	{
+		$this->load->library('pagination');
 		$data['row'] = $this->sale->get_sale();
 		$this->template->load('template', 'report/sale_report', $data);
 	}

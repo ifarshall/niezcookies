@@ -15,7 +15,7 @@
             <h3 class="box-title">Data Produksi</h3>
         </div>
         <div class="box-body table-responsive">
-            <table class="table table-bordered table-striped" id="table1">
+            <table class="table table-bordered table-striped">
                 <thead>
                     <tr>
                         <th>#</th>
@@ -60,6 +60,11 @@
                     } ?>
                 </tbody>
             </table>
+        </div>
+        <div class="bot-footer clearfix">
+            <ul class="pagination pagination-sm no-margin pull-right">
+                <?=$pagination?>
+            </ul>
         </div>
     </div>
 </section>

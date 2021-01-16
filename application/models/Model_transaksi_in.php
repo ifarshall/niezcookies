@@ -114,6 +114,19 @@ class Model_transaksi_in extends CI_Model {
         return $query;
     }
 
+    public function get_sale_pagination($limit = null, $start = null)
+    {
+        $this->db->select('*, producer.nama as nama_producer, user.nama as nama_user, 
+                            trans_in.created as sale_created');
+        $this->db->from('trans_in');
+        $this->db->join('producer', 'trans_in.producer_id = producer.producer_id', 'left');
+        $this->db->join('user', 'trans_in.user_id = user.user_id');
+        $this->db->limit($limit, $start);
+        $this->db->order_by('tanggal', 'desc');
+        $query = $this->db->get();
+        return $query;
+    }
+
     public function get_sale_detail($transin_id = null)
     {
         $this->db->from('trans_in_detail');

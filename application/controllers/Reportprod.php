@@ -12,6 +12,13 @@ class Reportprod extends CI_Controller {
 
 	public function sale()
 	{
+		$this->load->library('pagination');
+		$config['base_url'] = site_url('report/sale');
+		$config['total_rows']= $this->sale->get_sale_pagination()->num_rows();
+		$config['per_page'] = 10;
+		$this->pagination->initialize($config);
+		$data['pagination'] = $this->pagination->create_links();
+
 		$data['row'] = $this->sale->get_sale();
 		$this->template->load('template', 'report/prod_report', $data);
 	}
