@@ -12,6 +12,7 @@
     // $this->view('messages')
     ?>
     <div id="flash" data-flash="<?=$this->session->flashdata('success');?>"></div>
+    <div id="flush" data-flush="<?=$this->session->flashdata('error');?>"></div>
     <div class="box">
         <div class="box-header">
             <h3 class="box-title">Daftar Kategori Produk</h3>

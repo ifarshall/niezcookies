@@ -116,11 +116,21 @@ class Model_transaksi_in extends CI_Model {
 
     public function get_sale_pagination($limit = null, $start = null)
     {
+        $post = $this->session->userdata('search');
         $this->db->select('*, producer.nama as nama_producer, user.nama as nama_user, 
                             trans_in.created as sale_created');
         $this->db->from('trans_in');
         $this->db->join('producer', 'trans_in.producer_id = producer.producer_id', 'left');
         $this->db->join('user', 'trans_in.user_id = user.user_id');
+        if(!empty($post['date1']) && !empty($post['date2'])) {
+            $this->db->where("trans_in.tanggal BETWEEN '$post[date1]' AND '$post[date2]'");
+        }
+        if(!empty($post['producer'])) {
+            $this->db->where("trans_in.producer_id", $post['producer']);
+        }
+        if(!empty($post['invoice'])) {
+            $this->db->like("trans_in.invoice", $post['invoice']);
+        }
         $this->db->limit($limit, $start);
         $this->db->order_by('tanggal', 'desc');
         $query = $this->db->get();

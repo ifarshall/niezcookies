@@ -20,10 +20,10 @@ class Bahan_stock extends CI_Controller {
             $row[] = $no.".";
             $row[] = $bahan->j_bahan_nama;
             $row[] = $bahan->nama;
-            $row[] = $bahan->satuan_nama;
             $row[] = indo_currency($bahan->total_harga);
             $row[] = indo_currency($bahan->harga);
             $row[] = $bahan->stock;
+            $row[] = $bahan->satuan_nama;
             // add html for action
             $row[] = '<a href="'.site_url('bahan_stock/edit/'.$bahan->bahan_id).'" class="btn btn-warning btn-xs"><i class="fa fa-pencil"></i> Ubah</a>
                     <a href="'.site_url('bahan_stock/del/'.$bahan->bahan_id).'" id="btn-hapus" class="btn btn-danger btn-xs"><i class="fa fa-trash"></i> Hapus</a>';

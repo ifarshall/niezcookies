@@ -11,6 +11,69 @@
 <section class="content">
     <div id="flash" data-flash="<?=$this->session->flashdata('success');?>"></div>
     <div class="box">
+        <div class = "box-header with-border">
+            <h3 class="box-title">Pencarian</h3>
+        </div>
+        <div class="box-body">
+            <form action="" method="post">
+                <div class="row">
+                    <div class="col-md-2">
+                        <div class="form-horizontal">
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label">Tanggal</label>
+                                <div class="col-sm-9">
+                                    <input type="date" name="date1" value="<?=@$post['date1']?>" class="form-control">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-2">
+                        <div class="form-horizontal">
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label">s/d</label>
+                                <div class="col-sm-9">
+                                    <input type="date" name="date2" value="<?=@$post['date2']?>" class="form-control">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-horizontal">
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label">Pembuat Produk</label>
+                                <div class="col-sm-9">
+                                    <select name="producer" class="form-control">
+                                        <option value="">- Semua -</option>
+                                        <?php foreach($producer as $prd => $data) { ?>
+                                            <option value="<?=$data->producer_id?>" <?=@$post['producer'] == $data->producer_id ? 'selected' : ''?>><?=$data->nama?></option>
+                                        <?php } ?>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="form-horizontal">
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label">Kode Prod.</label>
+                                <div class="col-sm-9">
+                                    <input type="text" name="invoice" value="<?=@$post['invoice']?>" class="form-control">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="pull-right">
+                    <button type="submit" name="reset" class="btn btn-flat">Reset</button>
+                    <button type="submit" name="filter" class="btn btn-info btn-flat">
+                    <i class="fa fa-search"></i> Cari
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div class="box">
         <div class="box-header">
             <h3 class="box-title">Data Produksi</h3>
         </div>
@@ -21,13 +84,13 @@
                         <th>#</th>
                         <th>Kode Produksi</th>
                         <th>Tanggal Produksi</th>
-                        <th>Pembuat Bahan</th>
+                        <th>Pembuat Produk</th>
                         <th class="text-right">Total</th>
                         <th>Actions</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <?php $no =1;
+                    <?php $no = $this->uri->segment(3) ? $this->uri->segment(3) + 1 : 1;
                     foreach ($row->result() as $key => $data) { ?>
                     <tr>
                         <td style="width: 5%;"><?=$no++?>.</td>
@@ -61,7 +124,7 @@
                 </tbody>
             </table>
         </div>
-        <div class="bot-footer clearfix">
+        <div class="box-footer clearfix">
             <ul class="pagination pagination-sm no-margin pull-right">
                 <?=$pagination?>
             </ul>

@@ -388,10 +388,30 @@ $(document).on('click', '#add_cart', function() {
     var jumlah = $('#jumlah').val()
     var jumlah_cart = $('#jumlah_cart').val()
     if(produk_id == '') {
-        alert('Product belum dipilih')
+        Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'Produk belum dipilih',
+            showClass: {
+                popup: 'animate__animated animate__fadeInDown'
+            },
+            hideClass: {
+                popup: 'animate__animated animate__fadeOutUp'
+            }
+        })
         $('#barcode').focus()
     } else if(stock < 1 || parseInt(stock) < (parseInt(jumlah) + parseInt(jumlah_cart))) {
-        alert('Stock tidak mencukupi')
+        Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'Stock tidak mencukupi',
+            showClass: {
+                popup: 'animate__animated animate__fadeInDown'
+            },
+            hideClass: {
+                popup: 'animate__animated animate__fadeOutUp'
+            }
+        })
         $('#barcode').focus()
     } else {
         $.ajax({
@@ -479,13 +499,43 @@ $(document).on('click', '#edit_cart', function() {
     var total = $('#total_item').val()
     var stock = $('#stock_item').val()
     if(harga == '' || harga < 1) {
-        alert('Harga tidak boleh kosong')
+        Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'Harga tidak boleh kosong',
+            showClass: {
+                popup: 'animate__animated animate__fadeInDown'
+            },
+            hideClass: {
+                popup: 'animate__animated animate__fadeOutUp'
+            }
+        })
         $('#harga_item').focus()
     } else if(jumlah == '' || jumlah < 1) {
-        alert('Jumlah tidak boleh kosong')
+        Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'Jumlah tidak boleh kosong',
+            showClass: {
+                popup: 'animate__animated animate__fadeInDown'
+            },
+            hideClass: {
+                popup: 'animate__animated animate__fadeOutUp'
+            }
+        })
         $('#jumlah_item').focus()
     } else if(parseInt(jumlah) > parseInt(stock)) {
-        alert('Stock tidak mencukupi')
+        Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'Stock tidak mencukupi',
+            showClass: {
+                popup: 'animate__animated animate__fadeInDown'
+            },
+            hideClass: {
+                popup: 'animate__animated animate__fadeOutUp'
+            }
+        })
         $('#jumlah_item').focus()
     }   else {
         $.ajax({
@@ -552,10 +602,30 @@ $(document).on('click', '#proses_bayar', function(){
     var catatan = $('#catatan').val()
     var tanggal = $('#tanggal').val()
     if(subtotal < 1) {
-        alert('Belum ada Produk yang dipilih')
+        Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'Produk belum dipilih',
+            showClass: {
+                popup: 'animate__animated animate__fadeInDown'
+            },
+            hideClass: {
+                popup: 'animate__animated animate__fadeOutUp'
+            }
+        })
         $('#barcode').focus()
     } else if(cash < 1) {
-        alert('Jumlah kas masuk belum diinput')
+        Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'Uang masuk belum diinput',
+            showClass: {
+                popup: 'animate__animated animate__fadeInDown'
+            },
+            hideClass: {
+                popup: 'animate__animated animate__fadeOutUp'
+            }
+        })
         $('#cash').focus()
     } else {
         if(confirm('Yakin ingin proses transaksi ini?')) {

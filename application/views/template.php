@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="<?=base_url()?>assets/bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css">
     <link rel="stylesheet" href="<?=base_url()?>assets/dist/css/AdminLTE.min.css">
     <link rel="stylesheet" href="<?=base_url()?>assets/dist/css/skins/_all-skins.css">
+    <link rel="stylesheet" href="<?=base_url()?>assets\plugins\fullcalendar\fullcalendar.css">
     <!--[if lt IE 9]>
     <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
     <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
@@ -142,20 +143,21 @@
                         </ul>
                     </li>
                     <?php } ?>
-                    <li class="treeview <?=$this->uri->segment(1) == 'produk' || $this->uri->segment(1) == 'produk_stock' || $this->uri->segment(1) == 'transaksi_in'? "active":""?>">
+                    <?php if($this->session->userdata('level') != 2) { ?>       
+                            <li <?=$this->uri->segment(1) == 'transaksi_in' ? 'class="active"':""?>>
+                                <a href="<?=site_url('transaksi_in')?>">
+                                    <i class="fa fa-sticky-note"></i> <span>Catat Bahan Produksi</span>
+                                </a>
+                            </li>
+                    <?php } ?>
+                    <li class="treeview <?=$this->uri->segment(1) == 'produk' || $this->uri->segment(1) == 'produk_stock' ? "active":""?>">
                         <a href="#">
                             <i class="fa fa-archive"></i> <span>Produk</span>
                             <span class="pull-right-container"><i class="fa fa-angle-left pull-right"></i></span>
                         </a>
                         <ul class="treeview-menu">
                             <li <?=$this->uri->segment(1) == 'produk_stock' ? 'class="active"':""?>><a href="<?=site_url('produk_stock')?>"><i class="fa fa-circle-o"></i> Stock Produk</a></li>
-                                <?php if($this->session->userdata('level') != 2) { ?>       
-                            <li <?=$this->uri->segment(1) == 'transaksi_in' ? 'class="active"':""?>>
-                                <a href="<?=site_url('transaksi_in')?>">
-                                    <i class="fa fa-circle-o"></i> <span>Catat Bahan Produksi</span>
-                                </a>
-                            </li>
-                            <?php } ?>
+                                
                             <li <?=$this->uri->segment(1) == 'produk' && $this->uri->segment(2) == 'in' ? 'class="active"':""?>><a href="<?=site_url('produk/in')?>"><i class="fa fa-circle-o"></i> Produk Masuk</a></li>
                             <li <?=$this->uri->segment(1) == 'produk' && $this->uri->segment(2) == 'out' ? 'class="active"':""?>><a href="<?=site_url('produk/out')?>"><i class="fa fa-circle-o"></i> Produk Non Transaksi</a></li>
                         </ul>
@@ -168,7 +170,12 @@
                         </a>
                     </li>
                     <?php } ?>
-
+                    
+                    <li <?=$this->uri->segment(1) == 'calender' ? 'class="active"':""?>>
+                        <a href="<?=site_url('calender')?>">
+                            <i class="fa fa-calendar"></i> <span>Kalender Pemesanan</span>
+                        </a>
+                    </li>
                    
                     <li class="treeview <?=$this->uri->segment(1) == 'report' || $this->uri->segment(1) == 'gudang' 
                     ? "active":""?>">
@@ -179,7 +186,7 @@
                         <ul class="treeview-menu">
                             <li <?=$this->uri->segment(1) == 'report' && $this->uri->segment(2) == 'sale' ? 'class="active"':""?>><a href="<?=site_url('report/sale')?>"><i class="fa fa-circle-o"></i> Laporan Penjualan</a></li>
                             <li <?=$this->uri->segment(1) == 'report' && $this->uri->segment(2) == 'prod' ? 'class="active"':""?>><a href="<?=site_url('report/prod')?>"><i class="fa fa-circle-o"></i> Laporan Produksi</a></li>
-                            <li <?=$this->uri->segment(1) == 'gudang' ? 'class="active"':""?>><a href="#"><i class="fa fa-circle-o"></i> Gudang</a></li>
+                            <!-- <li <?=$this->uri->segment(1) == 'gudang' ? 'class="active"':""?>><a href="#"><i class="fa fa-circle-o"></i> Gudang</a></li> -->
                         </ul>
                     </li>
                     <?php if($this->fungsi->user_login()->kewenangan == 1 ) { ?>
@@ -224,10 +231,13 @@
     <script src="<?=base_url()?>assets/bower_components/jquery-slimscroll/jquery.slimscroll.min.js"></script>
     <script src="<?=base_url()?>assets/dist/js/adminlte.min.js"></script>
     <script src="<?=base_url()?>assets/plugins/sweetalert2/sweetalert2.min.js"></script>
-
+    <script src="<?=base_url()?>assets\plugins\fullcalendar\moment.min.js"></script>
+    <script src="<?=base_url()?>assets\plugins\fullcalendar\fullCalendar.min.js"></script>
+    
     <script src="<?=base_url()?>assets/bower_components/datatables.net/js/jquery.dataTables.min.js"></script>
     <script src="<?=base_url()?>assets/bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
 
+    
 
 <script>
 var flash = $('#flash').data('flash');
@@ -236,6 +246,21 @@ if(flash) {
         icon: 'success',
         title: 'Berhasil',
         text: flash,
+        showClass: {
+            popup: 'animate__animated animate__fadeInDown'
+        },
+        hideClass: {
+            popup: 'animate__animated animate__fadeOutUp'
+        }
+    })
+}
+
+var flush = $('#flush').data('flush');
+if(flush) {
+    Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: flush,
         showClass: {
             popup: 'animate__animated animate__fadeInDown'
         },

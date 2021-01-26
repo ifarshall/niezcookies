@@ -12,6 +12,7 @@
     // $this->view('messages')
     ?>
     <div id="flash" data-flash="<?=$this->session->flashdata('success');?>"></div>
+    <div id="flush" data-flush="<?=$this->session->flashdata('error');?>"></div>
     <div class="box">
         <div class="box-header">
             <h3 class="box-title">Daftar Kategori Bahan</h3>
@@ -56,7 +57,7 @@
     </div>
 </section>
 
-<div class="modal fade" id="modalDelete">
+<!-- <div class="modal fade" id="modalDelete">
     <div class="modal-dialog modal-sm">
         <div class="modal-content">
             <div class="modal-header">
@@ -73,4 +74,4 @@
             </div>
         </div>
     </div>
-</div>
+</div> -->

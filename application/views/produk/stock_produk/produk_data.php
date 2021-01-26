@@ -29,9 +29,9 @@
                         <th>Barcode</th>
                         <th>Kategori Produk</th>
                         <th>Nama Produk</th>
-                        <th>Satuan</th>
                         <th>Harga</th>
                         <th>Stock</th>
+                        <th>Satuan</th>
                         <th>Actions</th>
                     </tr>
                 </thead>
@@ -48,9 +48,9 @@
                         </td>
                         <td style="width: 10%"><?=$data->nama_j_produk?></td>
                         <td><?=$data->nama?></td>
-                        <td><?=$data->nama_satuan?></td>
                         <td><?=indo_currency($data->harga)?></td>
                         <td><?=$data->stock?></td>
+                        <td><?=$data->nama_satuan?></td>
                         <td class="text-center" width="160px">
                             <a href="<?=site_url('produk_stock/edit/'.$data->produk_id)?>" class="btn btn-warning btn-xs">
                                 <i class="fa fa-pencil"></i> Ubah

@@ -33,7 +33,7 @@
                             <input type="text" name="nama" value="<?=$row->nama?>" class="form-control" required>
                         </div>
                         <div class="form-group">
-                            <label>Jenis Bahan *</label>
+                            <label>Kategori Bahan *</label>
                             <select name="j_bahan" class="form-control" required>
                                 <option value="">- Pilih -</option>
                                 <?php foreach($j_bahan->result() as $key=>$data) { ?>

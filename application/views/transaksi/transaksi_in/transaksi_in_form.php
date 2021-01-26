@@ -312,10 +312,30 @@ $(document).on('click', '#add_cart', function(){
     var jumlah = $('#jumlah').val()
     var jumlah_cart = $('#jumlah_cart').val()
     if (bahan_id == ''){
-        alert('Bahan belum dipilih')
+        Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'Bahan belum dipilih',
+            showClass: {
+                popup: 'animate__animated animate__fadeInDown'
+            },
+            hideClass: {
+                popup: 'animate__animated animate__fadeOutUp'
+            }
+        })
         $('#nama').focus()
     } else if (stock < 1 || parseInt(stock) < (parseInt(jumlah) + parseInt(jumlah_cart))) {
-        alert('Stock tidak mencukupi')
+        Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'Stock tidak mencukupi',
+            showClass: {
+                popup: 'animate__animated animate__fadeInDown'
+            },
+            hideClass: {
+                popup: 'animate__animated animate__fadeOutUp'
+            }
+        })
         $('#nama').focus()
     } else {
         $.ajax({
@@ -389,10 +409,30 @@ $(document).on('click', '#proses_bayar', function() {
     var catatan = $('#catatan').val()
     var tanggal = $('#tanggal').val()
     if(subtotal < 1) {
-        alert('Belum ada bahan yang dipilih')
+        Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'Bahan belum dipilih',
+            showClass: {
+                popup: 'animate__animated animate__fadeInDown'
+            },
+            hideClass: {
+                popup: 'animate__animated animate__fadeOutUp'
+            }
+        })
         $('#nama').focus()
     } else if(producer_id == "") {
-        alert('Pembuat Produk belum dipilih')
+        Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'Pembuat Produk belum dipilih',
+            showClass: {
+                popup: 'animate__animated animate__fadeInDown'
+            },
+            hideClass: {
+                popup: 'animate__animated animate__fadeOutUp'
+            }
+        })
         $('#producer').focus()
     } else {
         if(confirm('Yakin proses transaksi ini?')) {
@@ -407,7 +447,17 @@ $(document).on('click', '#proses_bayar', function() {
                         alert('Silakan mengambil bahan');
                         window.open('<?=site_url('transaksi_in/cetak/')?>' + result.transin_id, '_blank');
                     } else {
-                        alert('Transaksi gagal');
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Oops...',
+                            text: 'Transaksi',
+                            showClass: {
+                                popup: 'animate__animated animate__fadeInDown'
+                            },
+                            hideClass: {
+                                popup: 'animate__animated animate__fadeOutUp'
+                            }
+                        });
                     }
                     location.href='<?=site_url('transaksi_in')?>'
                 }

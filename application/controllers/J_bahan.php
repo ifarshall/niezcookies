@@ -60,14 +60,28 @@ class J_bahan extends CI_Controller {
 
 	}
 
+	// public function del($id)
+    // {
+    //     $this->model_j_bahan->del($id);
+
+    //     if($this->db->affected_rows()>0) {
+    //         $this->session->set_flashdata('success', 'Data Berhasil dihapus');
+    //     }
+    //     redirect('j_bahan');
+	// }
+
 	public function del($id)
     {
         $this->model_j_bahan->del($id);
-
-        if($this->db->affected_rows()>0) {
+		$error = $this->db->error();
+		if($error['code'] != 0 ) {
+			$this->session->set_flashdata('error', 'Data gagal dihapus karena sudah digunakan');
+		}
+        else {
             $this->session->set_flashdata('success', 'Data Berhasil dihapus');
         }
-        redirect('j_bahan');
+        echo "<script>window.location='".site_url('j_bahan')."';</script>";
 	}
+	
 
 }

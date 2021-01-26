@@ -12,7 +12,7 @@
   <link rel="stylesheet" href="<?=base_url()?>assets/plugins/iCheck/square/blue.css">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
 </head>
-<body class="hold-transition login-page" style="background: url(https://image.freepik.com/free-vector/cookies-pattern-background_9845-34.jpg); height: 100px">
+<body class="hold-transition login-page" style="background: url(<?=base_url('uploads/background/cookiesbg.jpg')?>); height: 100px">
 <div class="login-box">
   <div class="login-logo">
     <a style="border-style: double; background-color: #fee277"><b>Niez</b>Cookies</a>

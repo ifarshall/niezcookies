@@ -67,7 +67,7 @@
             <!-- <h3><?=$this->fungsi->count_produk()?></h3> -->
               <h3><?php echo indo_currency($sumproduk);?></h3>
 
-            <p>Account Receivable</p>
+            <p>Stock Produk</p>
           </div>
           <div class="icon">
             <i class="fa fa-money"></i>
@@ -80,14 +80,14 @@
         <!-- small box -->
         <div class="small-box bg-teal">
           <div class="inner">
-            <h3><?php echo $stocktoples?></h3>
+            <h3><?php echo $pesanan?></h3>
 
-            <p>Stock Toples Kosong</p>
+            <p>Jumlah Pesanan</p>
           </div>
           <div class="icon">
             <i class="fa fa-gift"></i>
           </div>
-          <a href="<?=site_url('bahan_stock')?>" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+          <a href="<?=site_url('calender')?>" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
         </div>
       </div>
       <!-- ./col -->
@@ -95,15 +95,56 @@
           <!-- small box -->
           <div class="small-box bg-blue">
             <div class="inner">
-              <h3><?php echo $produkterlaris;?></h3>
+              <h3><?php echo $belumrekam;?></h3>
 
-              <p>Produk Terlaris</p>
+              <p>Produk On Progress</p>
             </div>
             <div class="icon">
-              <i class="fa fa-rocket"></i>
+              <i class="fa fa-hourglass-2"></i>
             </div>
-            <a href="<?=site_url('report/sale')?>" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+            <a href="<?=site_url('produk/in')?>" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
           </div>
         </div>
     </div>
+
+    <div class="box box-success">
+      <div class="box-header with-border">
+        <h3 class="box-title">Produk Terlaris Bulan ini</h3>
+
+        <div class="box-tools pull-right">
+          <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
+          <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+        </div>
+      </div>
+      <div class="box-body chart-responsive">
+          <div id="sales-bar" class="graph"  style="height: 300px;"></div>
+      </div>
+    </div>
 </section>
+
+<!-- <section>
+<div class="row">
+<h1><i class="fa fa-warning"></i> Under Maintenance</h1>
+</div>
+</section> -->
+
+<link rel="stylesheet" href="<?=base_url()?>assets/bower_components/morris.js/morris.css">
+<script src="<?=base_url()?>assets/bower_components/raphael/raphael.min.js"></script>
+<script src="<?=base_url()?>assets/bower_components/morris.js/morris.min.js"></script>
+
+<script>
+   var bar = new Morris.Bar({
+      element: 'sales-bar',
+      resize: true,
+      data: [
+              <?php foreach($row as $key => $data) {
+                echo "{item: '".$data->nama."', sold: ".$data->sold."},";
+              } ?>
+      ],
+      barColors: ['#00a65a', '#f56954'],
+      xkey: 'item',
+      ykeys: ['sold'],
+      labels: ['Terjual'],
+      hideHover: 'auto'
+    });
+</script>

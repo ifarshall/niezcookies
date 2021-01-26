@@ -60,14 +60,27 @@ class Satuan extends CI_Controller {
 
 	}
 
+	// public function del($id)
+    // {
+    //     $this->model_satuan->del($id);
+
+    //     if($this->db->affected_rows()>0) {
+    //         $this->session->set_flashdata('success', 'Data Berhasil dihapus');
+    //     }
+    //     redirect('satuan');
+	// }
+
 	public function del($id)
     {
         $this->model_satuan->del($id);
-
-        if($this->db->affected_rows()>0) {
+		$error = $this->db->error();
+		if($error['code'] != 0 ) {
+			$this->session->set_flashdata('error', 'Data gagal dihapus karena sudah digunakan');
+		}
+        else {
             $this->session->set_flashdata('success', 'Data Berhasil dihapus');
         }
-        redirect('satuan');
+        echo "<script>window.location='".site_url('satuan')."';</script>";
 	}
 
 }

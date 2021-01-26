@@ -29,10 +29,10 @@
                         <th>#</th>
                         <th>Kategori Bahan</th>
                         <th>Nama Bahan</th>
-                        <th>Satuan</th>
                         <th>Total Harga</th>
                         <th>Harga Satuan</th>
                         <th>Stock</th>
+                        <th>Satuan</th>
                         <th>Actions</th>
                     </tr>
                 </thead>
@@ -77,7 +77,7 @@
             },
             "columnDefs": [
                 {
-                    "targets": [4,5,6],
+                    "targets": [3,4,5],
                     "className": 'text-right',
                 },
                 {

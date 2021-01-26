@@ -48,5 +48,19 @@ class M_query extends CI_Model {
     }
     // return $result->row()->nama;
     }
+
+    public function get_belum_rekam()
+    {
+        $sql = "SELECT count(transin_id) AS belumrekam FROM trans_in WHERE transin_id NOT IN (SELECT transin_id FROM p_production)"; //liat yang udah keluar dari bahan belum rekam di produk
+        $result = $this->db->query($sql);
+        return $result->row()->belumrekam;
+    }
+
+    public function get_pesanan()
+    {
+        $sql = "SELECT count(id) AS pesanan FROM events"; //liat yang udah keluar dari bahan belum rekam di produk
+        $result = $this->db->query($sql);
+        return $result->row()->pesanan;
+    }
     
 }
